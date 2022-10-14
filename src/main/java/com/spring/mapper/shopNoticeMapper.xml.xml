@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.notice">
+	<!-- notice join-->
+	<insert id="insert" parameterType="com.myshop.vo.MyshopNoticeVO">
+		insert into myshop_notice
+			values('n_'||sequ_myshop_notice.nextval,#{ntitle}, #{ncontent}, #{ncode}, #{nfile}, #{nsfile}, #{ncrucial}, #{nsdate}, #{nedate})
+	</insert>
+	
+	<!-- notice select_all-->
+	<select id="select_all" resultType="com.myshop.vo.MyshopNoticeVO">
+		select rownum rno, nid, ntitle, ncrucial, nfile ,nsdate, nedate, ncode
+				from(select nid, ntitle, ncrucial, nfile ,nsdate, nedate, ncode from myshop_notice)
+	</select>
+	
+	<!-- notice total_count-->
+	<select id="total_count" resultType="int">
+		select count(*) from myshop_notice
+	</select>
+	
+	<!-- notice delete-->
+	<delete id="delete" parameterType="java.lang.String">
+		delete from myshop_notice where nid = #{nid}
+	</delete>
+	
+	<!-- notice select-->
+	<select id="select" parameterType="java.lang.String" resultType="com.myshop.vo.MyshopNoticeVO">
+		select nid, ncode, ntitle, ncontent, ncrucial, nfile ,nsdate, nedate from myshop_notice where nid=#{nid}
+	</select>
+	<!-- notice update-->
+	<update id="update" parameterType="com.myshop.vo.MyshopNoticeVO">
+		update myshop_notice set ncode=#{ncode}, ntitle=#{ntitle}, ncontent=#{ncontent}, nfile=#{nfile}, nsfile=#{nsfile} , ncrucial=#{ncrucial}, nsdate=#{nsdate}, nedate=#{nedate}
+		 where nid=#{nid}
+	</update>
+</mapper>  
