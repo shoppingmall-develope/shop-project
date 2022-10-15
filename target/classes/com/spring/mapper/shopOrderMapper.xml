@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.order">
+	<select id="info" parameterType="java.lang.String" resultType="com.myshop.vo.MyshopOrderVO">
+		select oid, id, pname, brand, price, psfile, category_id, myshop_product.pid
+			from myshop_orders, myshop_product
+			where myshop_orders.pid = myshop_product.pid and oid = #{oid}
+	</select>
+	<select id="select" parameterType="java.lang.String" resultType="com.myshop.vo.MyshopOrderVO">
+		select oid,  to_char(odate, 'yyyy-mm-dd') odate, psfile, brand, pname, price, myshop_product.pid pid, status
+    from myshop_orders, myshop_product
+    where myshop_orders.pid = myshop_product.pid and myshop_orders.id =#{id}
+	</select>
+</mapper>

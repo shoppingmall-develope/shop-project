@@ -14,11 +14,11 @@
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	
 <style>
-	body {padding-top:245px; margin:0;font-family: "Noto Sans KR";}
-	header {position:fixed;width:100%; height: 230px; padding:0; top:0; transition: top 0.2s ease-in-out; z-index:300; background-color:white;}
+	body {padding-top:278px; margin:0;font-family: "Noto Sans KR";}
+	header {position:fixed;width:100%; height: 230px; padding:0; top:0; transition: top 0.2s ease-in-out; z-index:300; background-color:white; }
 	.header_util { width:100%; line-height:40px; height:40px; margin:auto; background-color:#fafafa; font-size:12px; }
 	
-	.nav-up { top: -247px;}
+	.nav-up { top: -280px;}
 
 	
 	.util_left_menu ul, .memvership ul { margin:3px 0 0 0; } 
@@ -91,7 +91,7 @@
 							<li>
 							<a href="http://localhost:9000/myshop/qna_board.do">Q&amp;A</a> </li>
 							<li>
-							<a href="http://localhost:9000/myshop/review_list.do">REVIEW</a> </li>
+							<a href="http://localhost:9000/myshop/review.do">REVIEW</a> </li>
 						</ul>
 					</div>
 				</div>
@@ -145,11 +145,11 @@
 					</div>
 	        		<div class="memver_menu">
 	        		<!-- 마이페이지 장바구니 배송조회 -->
-	        			<dl onclick="window.location.href='#';">
+	        			<dl onclick="window.location.href='http://localhost:9000/myshop/mypage_order.do';">
 	        				<dt class="icon"><img src="http://localhost:9000/myshop/resources/images/mypage.png"></dt>
 	        				<dd class="text">마이페이지</dd>
 	        			</dl>
-	        			<dl onclick="window.location.href='#';" style=margin-top:14px;>
+	        			<dl onclick="window.location.href='http://localhost:9000/myshop/mypage_order.do';" style=margin-top:14px;>
 	        				<dt class="icon"><img src="http://localhost:9000/myshop/resources/images/order.png"></dt>
 	        				<dd class="text">주문/배송조회</dd>
 	        			</dl>
@@ -179,7 +179,7 @@
 									<li>
 									<h4><a href="product_list.do?group_id=w&category_id=6" id="category_id">슈즈</a></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate1}" var="cate" begin="12" end="18">
+									<c:forEach items="${cate1}" var="cate" begin="11" end="17">
 									<ul>
 									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" id="category_id" >${cate.category_nm}</a></li>
 									</ul>
@@ -188,7 +188,7 @@
 								<li>
 									<h4><a href="product_list.do?group_id=w&category_id=7">가방</a></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate1}" var="cate" begin="20" end="27">
+									<c:forEach items="${cate1}" var="cate" begin="19" end="26">
 									<ul>
 									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
 									</ul>
@@ -197,7 +197,7 @@
 								<li>
 									<h4><a href="product_list.do?group_id=w&category_id=8">액세서리</a></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate1}" var="cate" begin="29" end="38">
+									<c:forEach items="${cate1}" var="cate" begin="28" end="39">
 									<ul>
 									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
 									</ul>
@@ -215,7 +215,7 @@
 								<li>
 									<h4><a href="product_list.do?group_id=m&category_id=9">의류</a></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate2}" var="cate" begin="2" end="8">
+									<c:forEach items="${cate2}" var="cate" begin="1" end="8">
 									<ul>
 									  <li><a href="product_list.do?group_id=m&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
 									</ul>
@@ -260,7 +260,7 @@
 								<li>
 									<h4><a href="product_list.do?group_id=k&category_id=13">의류</a></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate3}" var="cate" begin="2" end="9">
+									<c:forEach items="${cate3}" var="cate" begin="1" end="9">
 									<ul>
 									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
 									</ul>
@@ -305,16 +305,16 @@
 								<li>
 									<h4><a href="product_list.do?group_id=l&category_id=17">의류</a></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate4}" var="cate" begin="2" end="8">
+									<c:forEach items="${cate4}" var="cate" begin="1" end="7">
 									<ul>
 									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=l&category_id=18">슈즈</a></h4>
+									<h4><a href="product_list.do?group_id=l&category_id=18">테크</a></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate4}" var="cate" begin="10" end="16">
+									<c:forEach items="${cate4}" var="cate" begin="10" end="17">
 									<ul>
 									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
 									</ul>

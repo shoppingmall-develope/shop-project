@@ -24,11 +24,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	vertical-align: baseline;
 	color: inherit;
 }
-
+*/
 .membership_benefit_content {
 	width: 1080px;
 	margin: auto;
-	/* border: 1px solid black; */
 	padding-bottom: 80px;
 }
 

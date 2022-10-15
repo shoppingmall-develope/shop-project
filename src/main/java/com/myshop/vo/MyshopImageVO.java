@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-public class Myshop_ImageVO {
+public class MyshopImageVO {
 	int rno;
 	String mcategory, mname, mdesc, file1, file2, msfile2, mdate, mid;
 	CommonsMultipartFile[] files;

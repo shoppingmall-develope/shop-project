@@ -23,7 +23,7 @@ a {
   color: black;
 }
 
-img {
+.cart__list__detail img {
   display: block;
   width: 80%;
   height: 80px;

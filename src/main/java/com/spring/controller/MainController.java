@@ -40,10 +40,12 @@ public class MainController {
 	
 	/** 메인페이지 **/
 	@RequestMapping(value="/myshop.do", method=RequestMethod.GET)
-	public String myshop() {
+	public String myshop() {	
 		return "myshop";
 	}
+	
 
+	
 	
 	
 	
@@ -53,11 +55,6 @@ public class MainController {
 		return "membership_benefit";
 	}
 	
-	//공지사항 페이지
-	@RequestMapping(value="/notice_board.do", method=RequestMethod.GET)
-	public String notice_board() {
-		return "/board/notice_board";
-	}
 	
 	/**
 	 * footer.do
@@ -65,6 +62,7 @@ public class MainController {
 	@RequestMapping(value="/footer.do", method=RequestMethod.GET)
 	public String footer() {
 		return "footer";
+		
 	}
 	
 

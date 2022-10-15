@@ -13,7 +13,7 @@ import com.myshop.vo.MyshopCategoryVO;
 import com.myshop.vo.MyshopProductVO;
 
 @Repository
-public class Myshop_productDAO {
+public class MyshopProductDAO {
 	//sqlSession
 	@Autowired 
 	private SqlSessionTemplate sqlSession;
@@ -21,7 +21,7 @@ public class Myshop_productDAO {
 
 	//totalCount 
 	public int totalCount() {
-		return sqlSession.selectOne("totalcount");
+		return sqlSession.selectOne("mapper.product.totalcount");
 	}
 	
 	public ArrayList<MyshopProductVO> select(int startCount,int endCount) {
@@ -33,6 +33,20 @@ public class Myshop_productDAO {
 		
 		return (ArrayList<MyshopProductVO>)list;
 	}
+	//상품목록 카테고리별 리스트
+	public ArrayList<MyshopProductVO> category_select(int category_id,int startCount,int endCount) {
+		System.out.println("--------------dao---->>" + category_id);
+		Map<String, Integer> param = new HashMap<String, Integer>();
+		
+		param.put("category_id", category_id);
+		param.put("start", startCount);
+		param.put("end", endCount);
+		
+		List<MyshopProductVO> list = sqlSession.selectList("mapper.product.category_select", param);
+		
+		return (ArrayList<MyshopProductVO>)list;
+	}
+	
 	// 관리자 상품등록  처리
 	public int insert(MyshopProductVO vo) {
 		return sqlSession.insert("mapper.product.insert", vo);

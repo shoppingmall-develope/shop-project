@@ -10,13 +10,19 @@ public class PageServiceImpl {
 	@Autowired
 	private ProductServiceImpl productService;
 	
+	@Autowired
+	private NoticeServiceImpl noticeService;
+	
+	@Autowired
+	private ReviewServiceImpl reviewService;
+	
 	public Map<String, Integer> getPageResult(String rpage, String serviceName, Object service) {
 		Map<String, Integer> param = new HashMap<String, Integer>();
 		
 		
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 3;	
+		int pageSize = 10;	
 		int reqPage = 1;	
 		int pageCount = 1;	
 		int dbCount = 0;
@@ -24,7 +30,16 @@ public class PageServiceImpl {
 		if(serviceName.equals("product")) {
 			productService = (ProductServiceImpl)service;
 			dbCount = productService.getTotalCount();
+		}else if(serviceName.equals("notice")) {
+			noticeService = (NoticeServiceImpl)service;
+			dbCount = noticeService.getTotalCount();
+		}else if(serviceName.equals("review")) {
+			reviewService = (ReviewServiceImpl)service;
+			dbCount= reviewService.getTotalCount();
 		}
+		
+		
+		
 		
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;

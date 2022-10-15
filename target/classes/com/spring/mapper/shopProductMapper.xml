@@ -8,8 +8,8 @@
 	<!-- 관리자 상품등록 -->
 	<insert parameterType="com.myshop.vo.MyshopProductVO" id="insert">
 		insert into myshop_product values(
-		sequ_shop_product.nextval,#{category_id}, #{pname}, #{brand}, #{quantity}, #{price}, #{delivery_price},sysdate,sysdate,
-		 #{rating}, #{pdetail}, #{pfile}, #{psfile},#{psize}) 
+		sequ_shop_product.nextval,#{category_id}, #{pname}, #{brand},#{psize}, #{quantity}, #{price}, #{delivery_price},sysdate,sysdate,
+		 #{rating}, #{pdetail}, #{pfile}, #{psfile}) 
 	</insert>
 	<!-- 상품목록 전체리스트 -->
 	<select parameterType="map" id="list" resultType="com.myshop.vo.MyshopProductVO">
@@ -23,7 +23,16 @@
 	    ]]>
 	</select>
 	
-
+	<!--  상품목록 카테고리별 리스트 -->
+	<select parameterType ="map" id="category_select" resultType="com.myshop.vo.MyshopProductVO"> 
+		select rno,pid,psfile,pname,category_id,category_nm,brand,quantity,price,delivery_price,regdate,updatedate
+			from(select rownum rno,pid,psfile,pname,category_id,category_nm,brand,quantity,price,delivery_price,regdate,updatedate
+	                from(select p.pid,p.pname,p.category_id,c.category_nm,p.price,p.regdate,p.quantity,p.updatedate,p.delivery_price,p.brand,psfile
+	                        from myshop_product p,myshop_category c 
+	                        where p.category_id = c.category_id order by regdate desc)
+	                where category_id = #{category_id})
+		where rno between #{start} and  #{end}
+	</select>
 	<!-- 상품목록 전체리스트 -->
 <!-- 	<select parameterType="map" id="list" resultType="com.myshop.vo.MyshopProductVO">
 			select p.pid,p.pname,p.category_id,c.category_id,c.category_nm,p.price,p.regdate from myshop_product p 

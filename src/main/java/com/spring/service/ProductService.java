@@ -17,6 +17,10 @@ public interface ProductService {
 	ArrayList<MyshopProductVO> getList(int startCount, int endCount);
 	
 	
+	/** 카테고리별 상품목록 **/
+	ArrayList<MyshopProductVO> category_select(int category_id, int startCount, int endCount);
+	
+	
 	/** 관리자 상품추가 **/
 	int getWriteResult(MyshopProductVO vo);
 	

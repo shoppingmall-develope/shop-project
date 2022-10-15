@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.myshop.dao.MyshopNoticeDAO;
 import com.myshop.vo.MyshopNoticeVO;
+import com.myshop.vo.MyshopSearchVO;
 
 public class NoticeServiceImpl implements NoticeService{
 	@Autowired
@@ -16,9 +17,14 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDao.insert(vo);
 	}
 	
-	//전체 공지사항 리스트
+	//admin - 전체 공지사항 리스트
 	public ArrayList<MyshopNoticeVO> getList(){
 		return noticeDao.selectAll();
+	}
+	
+	//admin - 조건 검색 리스트
+	public ArrayList<MyshopNoticeVO>getAdminSearchList(MyshopSearchVO vo){
+		return noticeDao.search_select(vo);
 	}
 	
 	//전체 공지사항 개수
@@ -40,4 +46,16 @@ public class NoticeServiceImpl implements NoticeService{
 	public int getUpdate(MyshopNoticeVO vo) {
 		return noticeDao.update(vo);
 	}
+	
+	//사용자 - 전체 공지사항 리스트
+	public ArrayList<MyshopNoticeVO> getList(int startCount, int endCount){
+		return noticeDao.user_selectAll(startCount,endCount);
+	}
+	
+	//사용자 - 검색 공지사항 리스트
+	public ArrayList<MyshopNoticeVO> getSearchList(String text, String searchtype, int startCount, int endCount){
+		return noticeDao.search_select(text, searchtype, startCount,endCount);
+	}
+	
+	
 }

@@ -6,15 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.myshop.vo.MyshopNoticeVO;
+import com.myshop.vo.MyshopReviewVO;
+import com.myshop.vo.MyshopSearchVO;
 import com.spring.service.FileServiceImpl;
 import com.spring.service.NoticeServiceImpl;
+import com.spring.service.ReviewServiceImpl;
 @Controller
 public class AdminController {
 		@Autowired
@@ -22,6 +29,9 @@ public class AdminController {
 		
 		@Autowired
 		private NoticeServiceImpl  noticeService;
+		
+		@Autowired
+		private ReviewServiceImpl  reviewService;
 		
 		//관리자 - admin_header
 		@RequestMapping(value="/admin_header.do", method=RequestMethod.GET)
@@ -40,10 +50,19 @@ public class AdminController {
 		}
 		
 		//관리자 - 리뷰 리스트
-		@RequestMapping(value="/admin_ReviewList.do", method=RequestMethod.GET)
-		public String admin_ReviewList() {
-			return "/admin/admin_ReviewList";
+		@RequestMapping(value="/admin_review_list.do", method=RequestMethod.GET)
+		public ModelAndView admin_review_list() {
+			ModelAndView mv = new ModelAndView();
+			
+			int totalcount = reviewService.getTotalCount();
+			ArrayList<MyshopReviewVO> list= reviewService.getList();
+			mv.addObject("list", list);
+			mv.addObject("totalcount",totalcount);
+			mv.setViewName("/admin/admin_review_list");
+			return mv;
 		}
+		
+		
 		//관리자 - 공지사항 리스트
 		@RequestMapping(value="/admin_notice_list.do", method=RequestMethod.GET)
 		public ModelAndView admin_notice_list() {
@@ -56,6 +75,62 @@ public class AdminController {
 			mv.setViewName("/admin/admin_notice_list");
 			return mv;
 		}
+		
+		@ResponseBody
+		@RequestMapping(value="/admin_review_content.do", method=RequestMethod.GET)
+		public MyshopReviewVO admin_review_content(String rid) {
+			MyshopReviewVO vo = reviewService.getContent(rid);
+			return vo;
+		}
+		
+		
+		//관리자 - 리뷰 리스트에서 선택 삭제(다중삭제) - ajax
+		@ResponseBody
+		@RequestMapping(value="/admin_review_list_delete.do", method=RequestMethod.POST)
+		public int admin_review_list_delete(@RequestParam(value="clist[]") ArrayList<String> clist) {
+			int result = 0;
+			System.out.println("11111");
+			for(String rid : clist) {
+		        System.out.println(rid);
+		        result = reviewService.getDelete(rid);
+		    }
+			
+			return result;
+		}
+		
+		//관리자 - 공지사항 조건검색 -ajax
+		@ResponseBody
+		@RequestMapping(value="/admin_notice_search.do", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")
+		public String admin_notice_search(@RequestBody MyshopSearchVO vo) {
+			System.out.println("컨트롤러");
+			/* System.out.println(vo.getText()); */
+			ArrayList<MyshopNoticeVO> list = noticeService.getAdminSearchList(vo);
+			
+			JsonObject jobject = new JsonObject(); //CgvNoticeVO
+			JsonArray jarray = new JsonArray();  //ArrayList
+			Gson gson = new Gson();
+			
+			for(MyshopNoticeVO nvo: list) {
+				JsonObject jo = new JsonObject();
+				jo.addProperty("rno", nvo.getRno());
+				jo.addProperty("nid", nvo.getNid());
+				jo.addProperty("ntitle", nvo.getNtitle());
+				jo.addProperty("ncrucial", nvo.getNcrucial());
+				jo.addProperty("nfile", nvo.getNfile());
+				jo.addProperty("nsdate", nvo.getNsdate());
+				jo.addProperty("nedate", nvo.getNedate());
+				jo.addProperty("ncode", nvo.getNcode());
+				
+				jarray.add(jo);
+			}
+			jobject.add("list", jarray);
+			jobject.addProperty("count", list.size());
+			
+			System.out.println(gson.toJson(jobject));
+
+			return gson.toJson(jobject);
+		}
+				
 		//관리자 - 공지사항 글쓰기
 		@RequestMapping(value="/admin_notice_write.do", method=RequestMethod.GET)
 		public String admin_notice_write() {
@@ -66,13 +141,9 @@ public class AdminController {
 		public ModelAndView admin_notice_write_check(MyshopNoticeVO vo, HttpServletRequest request)
 			throws Exception{
 			ModelAndView mv = new ModelAndView();
-			System.out.println(vo.getNtitle());
-			System.out.println(vo.getNcontent());
-			System.out.println(vo.getNcrucial());
-			System.out.println(vo.getNsdate());
-			System.out.println(vo.getNedate());
 			
 			vo = fileService.fileCheck(vo);
+			System.out.println(vo.getNsfile());
 			int result = noticeService.getWriteResult(vo);
 			
 			if(result == 1){			
@@ -86,31 +157,19 @@ public class AdminController {
 			return mv;
 
 		}
-		//관리자 - 공지사항 리스트에서 선택 삭제(다중삭제) - ajax
-		@ResponseBody
-		@RequestMapping(value="/admin_notice_list_delete.do", method=RequestMethod.POST)
-		public int admin_notice_list_delete(@RequestParam(value="clist[]") ArrayList<String> clist) {
-			int result = 0;
-			System.out.println("11111");
-			for(String nid : clist) {
-	            System.out.println(nid);
-	            result = noticeService.getDelete(nid);
-	        }
 		
-//			try {
-//				int cnt = Integer.parseInt((String) commandMap.get("CNT"));
-//				String delete_notice = (String) commandMap.get("delete_list");
-//				String[] delete_list = delete_notice.split(",");
-//				for (int i = 0; i < cnt; i++) {
-//					String nid = (String) delete_list[i];
-//					result = noticeService.getDelete(nid);
-//				}
-//
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-
-			return result;
+		//관리자 - 공지사항 리스트에서 선택 삭제(다중삭제) - ajax
+				@ResponseBody
+				@RequestMapping(value="/admin_notice_list_delete.do", method=RequestMethod.POST)
+				public int admin_notice_list_delete(@RequestParam(value="clist[]") ArrayList<String> clist) {
+					int result = 0;
+					System.out.println("11111");
+					for(String nid : clist) {
+			            System.out.println(nid);
+			            result = noticeService.getDelete(nid);
+			        }
+				
+					return result;
 		}
 		
 		//관리자 - 공지사항 수정페이지
@@ -152,14 +211,6 @@ public class AdminController {
 			return "/admin/admin_qna_list";
 		}
 		
-		//관리자 - q&a 리스트
-		@RequestMapping(value="/admin_review_list.do", method=RequestMethod.GET)
-		public String admin_review_list() {
-			return "/admin/admin_review_list";
-		}
-
-		
-		
 		
 		//관리자 - 사용자관리/메세지 페이지
 		@RequestMapping(value="/admin_message.do", method=RequestMethod.GET)
@@ -176,6 +227,8 @@ public class AdminController {
 		public String admin_order_cancel_management() {
 			return "/admin/admin_order_cancel_management";
 		}
+			
+		
 		
 		
 }

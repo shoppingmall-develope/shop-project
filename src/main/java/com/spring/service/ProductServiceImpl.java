@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myshop.dao.Myshop_productDAO;
+import com.myshop.dao.MyshopProductDAO;
 import com.myshop.vo.MyshopCategoryVO;
 import com.myshop.vo.MyshopProductVO;
 import com.spring.controller.ProductController;
@@ -18,7 +18,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	@Autowired
-	private Myshop_productDAO productDao;
+	private MyshopProductDAO productDao;
 	//페이징 처리
 	@Override
 	public int getTotalCount() {
@@ -32,6 +32,16 @@ public class ProductServiceImpl implements ProductService{
 		return list;
 	}
 
+	
+	
+	
+	@Override
+	public ArrayList<MyshopProductVO> category_select(int category_id, int startCount, int endCount) {
+		System.out.println("---" + category_id);
+		ArrayList<MyshopProductVO> list = productDao.category_select(category_id, startCount, endCount);
+		
+		return list;
+	}
 	//상품추가
 	@Override
 	public int getWriteResult(MyshopProductVO vo) {

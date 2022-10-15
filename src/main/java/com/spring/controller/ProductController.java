@@ -39,6 +39,7 @@ public class ProductController {
 	 */
 	
 	
+	
 	  @RequestMapping(value="/admin_product_write.do", method=RequestMethod.GET)
 	  public ModelAndView admin_product_write() {
 		  ModelAndView mv = new ModelAndView();
@@ -160,15 +161,21 @@ public class ProductController {
 
 	/** product_list 상품 목록 조회 **/
 	@RequestMapping(value = "/product_list.do", method = RequestMethod.GET)
-	public ModelAndView product_list(String rpage) {
+	public ModelAndView product_list(String group_id,String category_id,String rpage) {
 		ModelAndView mv = new ModelAndView();
-
+		System.out.print("contorller--------->>" +category_id);
 		Map<String, Integer> param = pageService.getPageResult(rpage, "product", productService);
-		ArrayList<MyshopProductVO> list = productService.getList(param.get("startCount"), param.get("endCount"));
-
+		ArrayList<MyshopProductVO> list = productService.category_select(Integer.parseInt(category_id),param.get("startCount"), param.get("endCount"));
+		for(MyshopProductVO vo:list) {
+			System.out.println(vo.getPname());
+			System.out.println(vo.getLevel());
+			System.out.println(vo.getCategory_id());
+			
+		}
 		mv.addObject("list", list);
 		mv.addObject("dbCount", param.get("dbCount"));
 		mv.addObject("pageSize", param.get("pageSize"));
+		
 		mv.addObject("rpage", param.get("rpage"));
 		mv.setViewName("/product/product_list");
 		System.out.println(mv);
