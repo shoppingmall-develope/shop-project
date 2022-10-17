@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,30 @@ public class MemberServiceImpl implements MemberService{
 	    message.send_msg(pnumber, numStr);
 
 	    return numStr;
+	}
+	
+	/** 
+	 * 관리자 회원 리스트
+	 */
+	public ArrayList<MyshopMemberVO> getList(){
+		return memberDao.selectAll();
+	}
+	
+	/** 
+	 * 관리자 전체 회원 리스트 수
+	 */
+	public int getTotalCount() {
+		return memberDao.totalCount();
+	}
+	
+	/** 
+	 * 최근 방문일 최신화
+	 */
+	public void updateVisit(String id) {
+		memberDao.updateVisit(id);
+	}
+	
+	public ArrayList<MyshopMemberVO> getSortList(String sorttype){
+		return memberDao.selectSort(sorttype);
 	}
 }

@@ -10,8 +10,8 @@
     <title>공지사항</title>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 	<link rel="stylesheet"  href="http://localhost:9000/myshop/resources/css/am-pagination.css">
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="http://localhost:9000/myshop/resources/js/jquery-3.6.0.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 	<script src="http://localhost:9000/myshop/resources/js/am-pagination.js"></script>
 <script>
 	$(document).ready(function(){

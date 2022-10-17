@@ -1,8 +1,25 @@
 package com.myshop.vo;
 
 public class MyshopMemberVO {
-	private String id, pass, email, zonecode, hp, pnumber, addr1, addr2, addr, birth, mdate, grade, email_check, gender, name;
+	private String id, pass, email, zonecode, hp, pnumber, addr1, addr2, addr, birth, mdate, grade, email_check, gender, name, visit;
 
+	public String getVisit() {
+		return visit;
+	}
+
+	public void setVisit(String visit) {
+		this.visit = visit;
+	}
+
+	public int getAcc() {
+		return acc;
+	}
+
+	public void setAcc(int acc) {
+		this.acc = acc;
+	}
+
+	private int acc;
 	public String getName() {
 		return name;
 	}
