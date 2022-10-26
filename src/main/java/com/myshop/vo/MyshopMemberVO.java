@@ -1,6 +1,7 @@
 package com.myshop.vo;
 
 public class MyshopMemberVO {
+
 	private String id, pass, email, zonecode, hp, pnumber,pnumber1,pnumber2,pnumber3, addr1, addr2, addr, birth, mdate, grade, email_check, gender, name, visit;
 	
 	public String getVisit() {
@@ -10,6 +11,8 @@ public class MyshopMemberVO {
 	public void setVisit(String visit) {
 		this.visit = visit;
 	}
+
+
 	public int getAcc() {
 		return acc;
 	}
