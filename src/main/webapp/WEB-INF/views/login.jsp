@@ -141,7 +141,7 @@
 	#new_member { /*  float:center; */
 		width: 1080px;
 		margin: auto; /*  margin-bottom:49px; min-height:600px; */
-		border: 1px solid black;
+		/* border: 1px solid black; */
 	}
 	
 	#login .top_welcome {
@@ -333,9 +333,9 @@
 						        				<input type="checkbox" class="checkbox_savaID" id="checkbox_savaID">아이디 저장
 						        			</div>
 						        			<div class="find_lnfo">
-						        				<a href="/find_id">아이디 찾기</a>
-						        				<a href="/find_pw">비밀번호 찾기</a>
-						        				<a href="/join">회원가입</a>
+						        				<a href="http://localhost:9000/myshop/find_id.do">아이디 찾기</a>
+						        				<a href="http://localhost:9000/myshop/find_pass.do">비밀번호 찾기</a>
+						        				<a href="http://localhost:9000/myshop/join.do">회원가입</a>
 						        			</div>
 						        		</div>
 						        		<div class="social_login">

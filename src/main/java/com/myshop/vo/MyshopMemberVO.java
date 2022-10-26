@@ -1,8 +1,24 @@
 package com.myshop.vo;
 
 public class MyshopMemberVO {
-	private String id, pass, email, zonecode, hp, pnumber, addr1, addr2, addr, birth, mdate, grade, email_check, gender, name;
+	private String id, pass, email, zonecode, hp, pnumber,pnumber1,pnumber2,pnumber3, addr1, addr2, addr, birth, mdate, grade, email_check, gender, name, visit;
+	
+	public String getVisit() {
+		return visit;
+	}
 
+	public void setVisit(String visit) {
+		this.visit = visit;
+	}
+	public int getAcc() {
+		return acc;
+	}
+
+	public void setAcc(int acc) {
+		this.acc = acc;
+	}
+
+	private int acc;
 	public String getName() {
 		return name;
 	}
@@ -68,11 +84,43 @@ public class MyshopMemberVO {
 	}
 
 	public String getPnumber() {
-		return pnumber;
+		if(pnumber == null) {
+			return pnumber1 +""+ pnumber2 + "" + pnumber3;
+		}else {
+			return pnumber; 
+		}
 	}
 
 	public void setPnumber(String pnumber) {
 		this.pnumber = pnumber;
+	}
+
+	
+	public String getPnumber1() {
+		return pnumber1;
+	}
+
+	public void setPnumber1(String pnumber1) {
+		this.pnumber1 = pnumber1;
+	}
+
+	public String getPnumber2() {
+		return pnumber2;
+	}
+
+	public void setPnumber2(String pnumber2) {
+		this.pnumber2 = pnumber2;
+	}
+
+	
+	
+	
+	public String getPnumber3() {
+		return pnumber3;
+	}
+
+	public void setPnumber3(String pnumber3) {
+		this.pnumber3 = pnumber3;
 	}
 
 	public String getAddr() {

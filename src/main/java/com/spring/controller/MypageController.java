@@ -17,7 +17,7 @@ public class MypageController {
 	private OrderServiceImpl orderService;
 	
 		//마이페이지 - 주문관리
-		@RequestMapping(value="/mypage_order.do", method=RequestMethod.GET)
+	/*	@RequestMapping(value="/mypage_order.do", method=RequestMethod.GET)
 		public ModelAndView mypage_order() {
 			ModelAndView mv = new ModelAndView();
 			String id = "admin";
@@ -28,7 +28,7 @@ public class MypageController {
 			mv.setViewName("/mypage_order");
 			
 			return mv;
-		}
+		}*/
 		
 		
 }

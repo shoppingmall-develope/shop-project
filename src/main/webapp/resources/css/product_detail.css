@@ -16,12 +16,14 @@ form {position: relative;  width: 982px;}
 .product_info table td.price { font-size: 22px;}
 .product_info table td.total { font-size:19px; color:#f52644;}
 .product_info table td.total b { font-size: 22px;}
-.product_info table .length { position: relative; width: 71px; height: 32px; border:1px solid #c6c6c6;}
+.product_info table .length {  outline:none;  position: relative; width: 71px; height: 32px; border:1px solid #c6c6c6;}
 .product_info table .length input { width:44px; height: 30px; border:none;border-right:1px solid #c6c6c6; text-align:center; }
-.product_info table .length a { overflow: hidden;position: absolute; right: 0; width: 26px; height: 16px; color:transparent;}
+.product_info table .length a { overflow: hidden;position: absolute; right: 0; width: 22px; height: 16px; color:transparent;}
 .product_info table .length a:nth-of-type(1) {  top: 0;background: url("") no-repeat center;}
 .product_info table .length a:nth-of-type(2) { bottom:0; background: url("") no-repeat center; border-top:1px solid #c6c6c6;}
-.product_info table select { width:100%; border:1px solid #c6c6c6; box-sizing: border-box;  background: url("") no-repeat right 11px center;appearance:none; -webkit-appearance:none; -moz-appearance:none;}
+
+
+.product_info table select { padding:9px 0; width:100%; border:1px solid #c6c6c6; box-sizing: border-box;  background: url("") no-repeat right 11px center;appearance:none; -webkit-appearance:none; -moz-appearance:none;}
 .product_info table select::-ms-expand { display: none;}
 .product_info .btns { padding: 45px 0 0; text-align: center; }
 .product_info .btns > a { display: inline-block; width: 230px; height: 42px;border-radius: 2px; font-size: 16px; color:#fff; line-height: 42px; border-radius: 5px; text-decoration: none;}

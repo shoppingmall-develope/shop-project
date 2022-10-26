@@ -38,6 +38,8 @@ public class LoginController {
 			if(svo.getLoginresult() == 1){
 				//로그인 성공 --> session객체에 key(sid),value(로그인계정) 추가 후 index 페이지로 이동
 				session.setAttribute("svo", svo);
+				//최근 방문일 카운트
+				memberService.updateVisit(vo.getId());
 				//mv.addObject("login_result","ok");
 				mv.setViewName("myshop");
 			}

@@ -68,8 +68,7 @@
 
   <body>
 <!-- header -->    
-
-	<%@ include file="header.jsp" %>
+	<jsp:include page="/header.do"></jsp:include>
 
 
 	     <!-- Swiper -->

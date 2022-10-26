@@ -1,9 +1,13 @@
 package com.myshop.vo;
 
+import java.util.ArrayList;
+
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class MyshopProductVO {
 	private int level,rno,pid,category_id,quantity,price,delivery_price;
+	private int category_parent; 
+	
 	public int getLevel() {
 		return level;
 	}
@@ -12,10 +16,34 @@ public class MyshopProductVO {
 	}
 	private String category_root,pname,brand,psize,regdate,updatedate,rating,pdetail,pfile,psfile,category_nm;
 	CommonsMultipartFile file1;
+	CommonsMultipartFile[] files;
+	ArrayList<String> pfiles = new ArrayList<String>(); 
+	ArrayList<String> psfiles = new ArrayList<String>();  
 	
-	
-	
-	
+	public int getCategory_parent() {
+		return category_parent;
+	}
+	public void setCategory_parent(int category_parent) {
+		this.category_parent = category_parent;
+	}
+	public CommonsMultipartFile[] getFiles() {
+		return files;
+	}
+	public void setFiles(CommonsMultipartFile[] files) {
+		this.files = files;
+	}
+	public ArrayList<String> getPfiles() {
+		return pfiles;
+	}
+	public void setPfiles(ArrayList<String> piles) {
+		this.pfiles = piles;
+	}
+	public ArrayList<String> getPsfiles() {
+		return psfiles;
+	}
+	public void setPsfiles(ArrayList<String> psfiles) {
+		this.psfiles = psfiles;
+	}
 	public String getCategory_root() {
 		return category_root;
 	}

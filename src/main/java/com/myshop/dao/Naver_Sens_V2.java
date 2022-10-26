@@ -43,7 +43,8 @@ public class Naver_Sens_V2 {
 	    bodyJson.put("type","sms");	// 메시지 Type (sms | lms)
 	    bodyJson.put("contentType","COMM");
 	    bodyJson.put("countryCode","82");
-	    bodyJson.put("from","01047192860");	// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
+	    bodyJson.put("from","01050151256");	// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
+	    bodyJson.put("content","Going 본인인증 ["+rand+"]");		// 난수와 함께 전송
 	    bodyJson.put("messages", toArr);		
 	    
 
@@ -67,7 +68,7 @@ public class Naver_Sens_V2 {
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             
-            wr.write(body.getBytes());
+            wr.write(body.getBytes("UTF-8"));
             wr.flush();
             wr.close();
 

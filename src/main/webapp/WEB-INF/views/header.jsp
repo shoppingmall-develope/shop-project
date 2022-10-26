@@ -136,12 +136,12 @@
 					</div>
 					<!-- 검색창 -->
 					<div class="search">
-					<form class="search-txt"  action="." method="post">
-						<input type="text" placeholder="검색어 입력">
-						<button class="search-btn" type="submit">
+					<form class="search-txt"  action="search.do" method="get">
+						<input type="text" placeholder="검색어 입력" name="keyword">
+						<button class="search-btn">
 							<img src="http://localhost:9000/myshop/resources/images/search_icon.png">
 						</button>
-						</form>
+					</form>
 					</div>
 	        		<div class="memver_menu">
 	        		<!-- 마이페이지 장바구니 배송조회 -->
@@ -168,38 +168,40 @@
 						<div class="contents_menu">
 							<ul class="inner">
 								<li>
-									<h4><a href="product_list.do?group_id=w&category_id=5">의류</a></h4>
+									
+									<h4><div>의류</div></h4>
+								
 									<p class="sub_line"></p>
 									<c:forEach items="${cate1}" var="cate" begin="1" end="9">
 									<ul>
-									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" id="category_id">${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}&category_parent=${cate.category_parent}" id="category_id" value="category_id" class="category_code">${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 									<li>
-									<h4><a href="product_list.do?group_id=w&category_id=6" id="category_id">슈즈</a></h4>
+									<h4><div>슈즈</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate1}" var="cate" begin="11" end="17">
 									<ul>
-									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" id="category_id" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}&category_parent=${cate.category_parent}" id="category_id" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=w&category_id=7">가방</a></h4>
+									<h4><div>가방</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate1}" var="cate" begin="19" end="26">
 									<ul>
-									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}&category_parent=${cate.category_parent}">${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=w&category_id=8">액세서리</a></h4>
+									<h4><div>액세서리</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate1}" var="cate" begin="28" end="39">
 									<ul>
-									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
@@ -213,38 +215,38 @@
 						<div class="contents_menu">
 							<ul class="inner">
 								<li>
-									<h4><a href="product_list.do?group_id=m&category_id=9">의류</a></h4>
+									<h4><div>의류</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate2}" var="cate" begin="1" end="8">
 									<ul>
-									  <li><a href="product_list.do?group_id=m&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=m&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=m&category_id=10">슈즈</a></h4>
+									<h4><div>슈즈</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate2}" var="cate" begin="10" end="14">
 									<ul>
-									  <li><a href="product_list.do?group_id=m&category_id=${cate.category_id}&category_parent_id=0" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=m&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=m&category_id=11">가방</a></h4>
+									<h4><div>가방</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate2}" var="cate" begin="16" end="23">
 									<ul>
-									  <li><a href="product_list.do?group_id=m&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=m&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=m&category_id=12">액세서리</a></h4>
+									<h4><div>액세서리</div></h4>
 									<p class="sub_line"></p>
 								<c:forEach items="${cate2}" var="cate" begin="25" end="36">
 									<ul>
-									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=w&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
@@ -258,38 +260,38 @@
 						<div class="contents_menu">
 							<ul class="inner">
 								<li>
-									<h4><a href="product_list.do?group_id=k&category_id=13">의류</a></h4>
+									<h4><div>의류</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate3}" var="cate" begin="1" end="9">
 									<ul>
-									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=k&category_id=14">슈즈</a></h4>
+									<h4><div>슈즈</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate3}" var="cate" begin="11" end="15">
 									<ul>
-									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=k&category_id=15">가방</a></h4>
+									<h4><div>가방</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate3}" var="cate" begin="17" end="25">
 									<ul>
-									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=k&category_id=16">액세서리</a></h4>
+									<h4><div>액세서리</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate3}" var="cate" begin="27" end="31">
 									<ul>
-									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=k&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
@@ -303,38 +305,38 @@
 						<div class="contents_menu">
 							<ul class="inner">
 								<li>
-									<h4><a href="product_list.do?group_id=l&category_id=17">의류</a></h4>
+									<h4><div>의류</div></h4>
 									<p class="sub_line"></p>
 									<c:forEach items="${cate4}" var="cate" begin="1" end="7">
 									<ul>
-									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=l&category_id=18">테크</a></h4>
+									<h4><div>테크</div></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate4}" var="cate" begin="10" end="17">
+									<c:forEach items="${cate4}" var="cate" begin="9" end="12">
 									<ul>
-									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=l&category_id=19">가방</a></h4>
+									<h4><div>가방</div></h4>
 									<p class="sub_line"></p>
-									<c:forEach items="${cate4}" var="cate" begin="18" end="21">
+									<c:forEach items="${cate4}" var="cate" begin="14" end="19">
 									<ul>
-									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>
 								<li>
-									<h4><a href="product_list.do?group_id=l&category_id=20">액세서리</a></h4>
+									<h4><div>액세서리</div></h4>
 									<p class="sub_line"></p>
-								<c:forEach items="${cate4}" var="cate" begin="23" end="26">
+								<c:forEach items="${cate4}" var="cate" begin="21" end="24">
 									<ul>
-									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}" >${cate.category_nm}</a></li>
+									  <li><a href="product_list.do?group_id=l&category_id=${cate.category_id}&category_parent=${cate.category_parent}" >${cate.category_nm}</a></li>
 									</ul>
 									</c:forEach>
 								</li>

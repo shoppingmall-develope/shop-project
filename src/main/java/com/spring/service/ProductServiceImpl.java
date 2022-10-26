@@ -31,14 +31,37 @@ public class ProductServiceImpl implements ProductService{
 		System.out.println(list);
 		return list;
 	}
+	
+	//상품수정
+	@Override
+	public int updateProduct(MyshopProductVO vo) {
+		return productDao.update(vo);
+	}
+	//상품수정 정보가져오기
+	@Override
+	public MyshopProductVO getContent(String pid) {
+		return productDao.select(pid);
+	}
 
 	
-	
-	
+	//상품검색
 	@Override
-	public ArrayList<MyshopProductVO> category_select(int category_id, int startCount, int endCount) {
-		System.out.println("---" + category_id);
-		ArrayList<MyshopProductVO> list = productDao.category_select(category_id, startCount, endCount);
+	public List<MyshopProductVO> getProductList( String keyword, int startCount, int endCount) {
+		System.out.println("search_service");
+		ArrayList<MyshopProductVO> list = productDao.getProductList( keyword, startCount, endCount);
+		return list;
+	}
+	//상품삭제
+	@Override
+	public int deleteProduct(String pid) {
+		return productDao.delectProduct(pid);
+	}	
+	
+	//카테고리 관리자 /분류
+	@Override
+	public ArrayList<MyshopProductVO> category_select( int category_parent,int category_id ,int startCount, int endCount) {
+//		System.out.println("---" + category_id);
+		ArrayList<MyshopProductVO> list = productDao.category_select(category_parent,category_id , startCount, endCount);
 		
 		return list;
 	}
@@ -58,6 +81,7 @@ public class ProductServiceImpl implements ProductService{
 	public List<MyshopCategoryVO> cateList(String dept_level) {
 		return productDao.cateList(dept_level);
 	}
+	//카테고리 메뉴바 리스트
 	@Override
 	public List<MyshopCategoryVO> cateListAjax(String cateCode) {
 		

@@ -63,7 +63,7 @@
 			<col>
 			</colgroup>
 			<tr>
-				<th>제조사/공급사</th>
+				<th>제조사</th>
 				<td>MY SHOP</td>
 			</tr>
 			<tr>
@@ -77,14 +77,23 @@
 				</td>
 			</tr>
 			<tr>
-				<th>사용가능쿠폰</th>
-				<td>0개</td>
+				<th>브랜드</th>
+				<td>${vo.brand}</td>
 			</tr>
 			<tr>
 				<th>옵션선택</th>
 				<td>
 					<select>
-					<option>기본(+0)</option>
+					<option value="default">선택</option>
+					<option>Black V0029/Small</option>
+					<option>Black V0029/Medium</option>
+					<option>Black V0029/Large</option>
+					<option>NAVY V0020/Small</option>
+					<option>NAVY V0020/Medium</option>
+					<option>NAVY V0020/Large</option>
+					<option>Grey Mari/Small</option>
+					<option>Grey Mari/Medium</option>
+					<option>Grey Mari/Large</option>
 					</select>
 				</td>
 			</tr>

@@ -194,7 +194,7 @@ table.calculation td {
 </head>
 <body>
 	<!-- header -->
-	<%@ include file="header.jsp" %>
+	<jsp:include page="/header.do"></jsp:include>
 	
     <section class="cart">
         <div class="cart__information">

@@ -16,14 +16,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.myshop.vo.MyshopMemberVO;
 import com.myshop.vo.MyshopNoticeVO;
 import com.myshop.vo.MyshopReviewVO;
 import com.myshop.vo.MyshopSearchVO;
 import com.spring.service.FileServiceImpl;
+import com.spring.service.MemberServiceImpl;
 import com.spring.service.NoticeServiceImpl;
 import com.spring.service.ReviewServiceImpl;
 @Controller
 public class AdminController {
+		
+		@Autowired
+		private MemberServiceImpl  memberService;
+		
 		@Autowired
 		private FileServiceImpl  fileService;
 		
@@ -38,16 +44,14 @@ public class AdminController {
 		public String admin_header() {
 			return "/admin/admin_header";
 		}
-		//관리자 - admin-home
-		@RequestMapping(value="/admin_customercare.do", method=RequestMethod.GET)
-		public String admin_customercare() {
-			return "/admin/admin_customercare";
-		}
+		
 		//관리자 - admin-home
 		@RequestMapping(value="/admin.do", method=RequestMethod.GET)
 		public String admin() {
 			return "/admin/admin";
 		}
+		
+		
 		
 		//관리자 - 리뷰 리스트
 		@RequestMapping(value="/admin_review_list.do", method=RequestMethod.GET)
@@ -61,6 +65,21 @@ public class AdminController {
 			mv.setViewName("/admin/admin_review_list");
 			return mv;
 		}
+		
+		//관리자 - 회원관리
+		@RequestMapping(value="/admin_customercare.do", method=RequestMethod.GET)
+		public ModelAndView admin_customercare() {
+			ModelAndView mv= new ModelAndView();
+			
+			ArrayList<MyshopMemberVO> list = memberService.getList();
+			int totalcount = memberService.getTotalCount();
+			
+			mv.addObject("list", list);
+			mv.addObject("totalcount", totalcount);
+			mv.setViewName("/admin/admin_customercare");
+			return mv;
+		}
+		
 		
 		
 		//관리자 - 공지사항 리스트
@@ -83,6 +102,36 @@ public class AdminController {
 			return vo;
 		}
 		
+		
+		//관리자 - 회원 관리 정렬
+				@ResponseBody
+				@RequestMapping(value="/admin_member_sort.do", method=RequestMethod.GET)
+				public String admin_member_sort(String sorttype) {
+					ArrayList<MyshopMemberVO> sort_list=memberService.getSortList(sorttype);
+					/* System.out.println(sorttype); */
+					JsonObject jobject = new JsonObject(); //CgvNoticeVO
+					JsonArray jarray = new JsonArray();  //ArrayList
+					Gson gson = new Gson();
+					
+					for(MyshopMemberVO mvo: sort_list) {
+						JsonObject jo = new JsonObject();
+						jo.addProperty("name", mvo.getName());
+						jo.addProperty("id", mvo.getName());
+						jo.addProperty("email", mvo.getName());
+						jo.addProperty("grade", mvo.getName());
+						jo.addProperty("acc", mvo.getName());
+						jo.addProperty("visit", mvo.getName());
+						
+						
+						jarray.add(jo);
+					}
+					jobject.add("list", jarray);
+					jobject.addProperty("count", sort_list.size());
+					
+					
+					return gson.toJson(jobject);
+				}
+				
 		
 		//관리자 - 리뷰 리스트에서 선택 삭제(다중삭제) - ajax
 		@ResponseBody
@@ -200,8 +249,10 @@ public class AdminController {
 		public ModelAndView admin_notice_update(String nid) {
 			ModelAndView mv = new ModelAndView();
 			MyshopNoticeVO vo = noticeService.getContent(nid);
+			
 			mv.addObject("vo", vo);
 			mv.setViewName("/admin/admin_notice_update");
+			
 			return mv;
 		}
 		

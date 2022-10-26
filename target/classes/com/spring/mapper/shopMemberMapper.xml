@@ -19,9 +19,41 @@
 	 </select>
 	 
 	 <!-- member login-->
-
-
-<select parameterType="com.myshop.vo.MyshopMemberVO" id="login" resultType="com.myshop.vo.SessionVO">
-	select count(*) loginresult, name, id from myshop_member where id=#{id} and pass=#{pass} group by name, id 
-</select>
+	<select parameterType="com.myshop.vo.MyshopMemberVO" id="login" resultType="com.myshop.vo.SessionVO">
+		select count(*) loginresult, name, id from myshop_member where id=#{id} and pass=#{pass} group by name, id 
+	</select>
+	
+	<!-- member select_all -->
+	<select id="select_all" resultType="com.myshop.vo.MyshopMemberVO">
+		select name, id, email, grade, acc, to_char(visit, 'yyyy-mm-dd') visit from myshop_member
+	</select>
+	
+	<!-- member total_count -->
+	<select id="total_count" resultType="int">
+		select count(*) from myshop_member
+	</select>
+	
+	<!-- member total_count -->
+	<update id="update_visit" parameterType="java.lang.String">
+		update myshop_member set visit = sysdate where id = #{id}
+	</update>
+	
+	<!-- member select_sort -->
+	<select id="select_sort" parameterType="java.lang.String" resultType="com.myshop.vo.MyshopMemberVO">
+		select name, id, email, grade, acc, to_char(visit, 'yyyy-mm-dd') visit from myshop_member where grade = #{sorttype}
+	</select>
+	
+	
+	<!-- 로그인 아이디 , 비밀번호 찾기 -->
+	<select id="findId" resultType="com.myshop.vo.MyshopMemberVO">
+		select * from myshop_member where name=#{name}
+	</select>
+	
+	<select id="findPass" resultType="com.myshop.vo.MyshopMemberVO">
+		select * from myshop_member where id=#{id} and name=#{name} and pnumber=#{pnumber}
+	</select>
+	
+	<update id="updatePass">
+		update users set pwd=#{pwd} where id=#{id}
+	</update>
 </mapper>    	

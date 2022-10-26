@@ -8,17 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <script src="http://localhost:9000/myshop/resources/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="http://localhost:9000/myshop/resources/css/admin_product_list.css">
     <link rel="stylesheet"  href="http://localhost:9000/myshop/resources/css/am-pagination.css">
-    <script src="http://localhost:9000/myshop/resources/js/jquery-3.6.0.min.js"></script>
-    <script src="http://localhost:9000/myshop/resources/js/am-pagination.js"></script>
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="http://localhost:9000/myshop/resources/js/am-pagination.js"></script>
+    <script src="http://localhost:9000/myshop/resources/js/admin_list.js"></script>
     <title>회원 관리페이지</title> 
 <script>
 	$(document).ready(function(){
 		
 		//페이징 리스트 출력
-		var pager = jQuery('#ampaginationsm').pagination({
+		/*var pager = jQuery('#ampaginationsm').pagination({
 		
 		    maxSize: 7,	    		// max page size
 		    totals: '${dbCount}',	// total rows	
@@ -38,8 +39,44 @@
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){		
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
 	           $(location).attr('href', "http://localhost:9000/myshop/admin_product_list.do?rpage="+e.page);         
-	    });
+	    }); */ 
 		
+		
+		//체크박스 allCheck
+		$("#allCheck").click(function(){
+			var chk = $("#allCheck").prop("checked");
+			if(chk) {
+				$(".checkBox").prop("checked", true);
+			}else {
+				$(".checkBox").prop("checked", false);
+			}
+		});
+		
+		//체크박스 선택체크 
+		$(".checkBox").click(function(){
+			$("#allCheck").prop("checked", false);
+		});
+		
+		//삭제 버튼 클릭시  
+		$(".selectDeleteBtn").click(function(){
+			var confirmVal = confirm("정말 삭제하시겠습니가?");
+			
+			if(confirmVal) {
+				var checkArr = new Array();
+				$("input[class='checkBox']:checked").each(function(){
+					checkArr.push($(this).val());
+				});
+				
+				$.ajax({
+					url:"/myshop/deleteProduct.do",
+					type:"POST",
+					data:{checkBox:checkArr},
+					success:function(result){
+						location.reload();
+					}
+				});
+			}
+		});
  	});
 </script> 
 </head>
@@ -108,6 +145,7 @@
 					<h3 class="search_title">상품 상세 조회</h3>
 				</div>
 				<div class="seller_content">
+				<form name="adminProudctForm" action="admin_conditional_search.do" method="post">
 					<div class="list_content">
 						<table class="seller_search">
 							<tr>
@@ -136,13 +174,13 @@
 							<tr>
 								<th>기간</th>
 								<td colspan="3">
-									<button class="period_search">오늘</button>
-									<button class="period_search">1주일</button>
-									<button class="period_search">1개월</button>
-									<button class="period_search">3개월</button>
-									<button class="period_search">6개월</button>
-									<button class="period_search">1년</button>
-									<button class="period_search">전체</button>
+									<button class="period_search" id="p1" type="button">오늘</button>
+									<button class="period_search" id="p2" type="button">1주일</button>
+									<button class="period_search" id="p3" type="button">1개월</button>
+									<button class="period_search" id="p4" type="button">3개월</button>
+									<button class="period_search" id="p5" type="button">6개월</button>
+									<button class="period_search" id="p6" type="button">1년</button>
+									<button class="period_search" id="p7" type="button">전체</button>
 									<input type="date" class="first-date">~
 									<input type="date"> 
 								</td>	
@@ -153,7 +191,8 @@
 							<button class="search_btn" type="reset">초기화</button>
 						</div>
 					</div>
-				
+					
+				</form>
 				</div>
 				<div class="seller_list">
 					<div class="list_heading">
@@ -167,7 +206,7 @@
 								<option value="popularity">인기도 순</option>
 								<option value="stock">남은 재고 수량순</option>
 							</select>
-							<button type="button">선택 삭제</button>
+							<button type="button" class="selectDeleteBtn">선택 삭제</button>
 							<a href="admin_product_write.do"><button type="button">상품 등록</button></a>
 						</div>
 					</div>
@@ -175,7 +214,7 @@
 						<div class="table_flame">
 							<table class="list_table">
 								<tr>
-									<th><input type="checkbox"></th>
+									<th><input type="checkbox" name="allCheck" id="allCheck">no</th>
 									<th>상품명</th>
 									<th>브랜드</th>
 									<th>카테고리</th>
@@ -190,15 +229,15 @@
 								
 								<c:forEach var="vo" items="${list}">
 								<tr>
-									<td><input type="checkbox"> ${vo.rno}</td>
+									<td><input type="checkbox" name="checkBox" class="checkBox" value="${vo.pid}"> ${vo.rno}</td>
 									<td>
 									<c:if test="${vo.psfile != null }">
-									<a href=""><img src="http://localhost:9000/myshop/resources/upload/${vo.psfile }" ></a>
+									<a href="http://localhost:9000/myshop/admin_product_update.do?pid=${vo.pid}"><img src="http://localhost:9000/myshop/resources/upload/${vo.psfile }" ></a>
 									</c:if>
-									<a href="">${vo.pname}</a>
+									<a href="http://localhost:9000/myshop/admin_product_update.do?pid=${vo.pid}">${vo.pname}</a>
 									</td>
 									<td>${vo.brand}</td>
-									<td>${vo.category_id}</td>
+									<td>${vo.category_id}${vo.category_nm}</td>
 									<td>${vo.quantity}</td>
 									<td>${vo.price}</td>
 									<td>20,000</td>
@@ -208,12 +247,12 @@
 									<td>${vo.updatedate}</td>
 								</tr>
 								</c:forEach>
+								<tr>
+									<td colspan="4"><div id="ampaginationsm"></div></td>
+								</tr>  
 								
 							</table>
 						</div>
-								<tr>
-									<td colspan="4"><div id="ampaginationsm"></div></td>
-								</tr>
 					</div>
 				</div>
 			</div>

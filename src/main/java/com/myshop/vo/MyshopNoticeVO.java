@@ -10,6 +10,7 @@ public class MyshopNoticeVO {
 	String nid, ntitle, ncontent, nfile, nsfile, ncrucial, nsdate, nedate,ncode;
 	CommonsMultipartFile file1;
 	public String getNcode() {
+	
 		return ncode;
 	}
 	public void setNcode(String ncode) {
