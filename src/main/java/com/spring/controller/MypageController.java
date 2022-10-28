@@ -47,13 +47,13 @@ public class MypageController {
 		//마이페이지 - 주문관리 - 주문 취소요청 시 주문 상태변경
 		@ResponseBody
 		@RequestMapping(value="/order_cancel_update.do", method=RequestMethod.GET)
-		public int order_cancel_update(int oid) {
-			int result = 0;
+		public String order_cancel_update(int oid) {
+			int result = orderService.updateStatus(oid);
 			
-			result = orderService.updateStatus(oid);
-			
-			return result;
+			System.out.println(result);
+			return String.valueOf(result);
 		}
+		
 		//마이페이지 - 주문검색 조회
 		@ResponseBody
 		@RequestMapping(value="/order_search.do", method=RequestMethod.POST, produces="text/plain;charset=UTF-8")

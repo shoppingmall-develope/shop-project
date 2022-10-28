@@ -153,7 +153,7 @@
 	        				<dt class="icon"><img src="http://localhost:9000/myshop/resources/images/order.png"></dt>
 	        				<dd class="text">주문/배송조회</dd>
 	        			</dl>
-	        			<dl onclick="window.location.href='http://localhost:9000/myshop/cart.do';">
+	        			<dl onclick="window.location.href='http://localhost:9000/myshop/cart.do?id=${sessionScope.svo.id}';">
 	        				<dt class="icon"><img src="http://localhost:9000/myshop/resources/images/cart.png"></dt>
 	        				<dd class="text">장바구니</dd>
 	        			</dl>

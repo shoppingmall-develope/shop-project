@@ -47,10 +47,9 @@ public class MyshopOrderDAO {
 	 * update_status: 주문 취소 요청시 주문 상태변경
 	 */
 	public int update_status(int oid) {
-		
-		return sqlSession.selectOne(namespace+".update_status",oid);
+		int result =sqlSession.update(namespace+".update_status",oid);
+		return result;
 	}
-	
 	
 	public ArrayList<MyshopOrderVO> search_select(MyshopSearchVO vo){
 		Map<String,String> param = new HashMap<String,String>();

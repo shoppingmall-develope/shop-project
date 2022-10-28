@@ -255,6 +255,10 @@ td {padding: .5rem 1rem; font-size: .9rem; color: #222;}
 		border: 1px solid #dbdde2;
 		text-align: center;
 		/* padding:10px; */
+		overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	    word-break: break-all;
 		
 	}
 	.list_table th{
@@ -264,6 +268,5 @@ td {padding: .5rem 1rem; font-size: .9rem; color: #222;}
 		border: 1px solid  #fff;
 		margin-bottom:10px;
 		padding:6px 10px 6px 10px;
+		
 	}
-
-

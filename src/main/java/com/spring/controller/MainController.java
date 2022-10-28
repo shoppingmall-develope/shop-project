@@ -20,11 +20,7 @@ public class MainController {
 	@Autowired 
 	ProductService productService;		
 
-	// 장바구니 
-	@RequestMapping(value="/cart.do", method=RequestMethod.GET)
-	public String cart() {
-		return "cart";
-	}
+
 	//회원 - 공통 헤더 
 	@RequestMapping(value="/header.do", method=RequestMethod.GET)
 	public String header(Model model) {

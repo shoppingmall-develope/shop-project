@@ -18,7 +18,6 @@ function buying_tab(searchtext,searchtype ,sorttype){
 	var id = $(".user_id").val();
 	var param ={"searchtext":searchtext,"searchtype":searchtype,"sorttype":sorttype,"id":id};
 	var search = JSON.stringify(param);
-	alert(id);
 	$.ajax({
 		url:"order_search.do",
  		type: "POST",
@@ -105,8 +104,6 @@ function buying_tab(searchtext,searchtype ,sorttype){
 	}//success
 	});
 }
-
-
 //리뷰작성
 function reviewwrite(oid){
 	$.ajax({
@@ -168,8 +165,6 @@ function reviewwrite(oid){
  		}
 	});
 }
-
-
 //리뷰 수정
 function  reviewupdate(rid){
 	$.ajax({
@@ -251,13 +246,13 @@ function  reviewupdate(rid){
  	 		}
 	});
 }
-
-
 function cancelorder(cancel_order){
 	$.ajax({
 		url:"order_cancel_update.do?oid="+cancel_order,
  		success:function(result){
+ 			/* alert(result); */
  			if(result ==1){
+ 				
 	    		alert("관리자에게 주문 취소 요청을 보냈습니다.");	
 	    		location.reload();
  			}else{
@@ -267,8 +262,6 @@ function cancelorder(cancel_order){
  		}
 	});
 }
-
-
 function reviewdelete(rid){
 	$.ajax({
 		url:"review_delete_check.do?rid="+rid,
@@ -283,7 +276,6 @@ function reviewdelete(rid){
  		}
 	});
 }
-
 	//리뷰쓰기 레이어 팝업	
 	$(document).ready(function() {
 		//레이어 팝업
@@ -331,9 +323,7 @@ function reviewdelete(rid){
 		});
 		
 		
-
 	});
-
 </script>
 <style>
 .cancel_order{
@@ -365,7 +355,6 @@ function reviewdelete(rid){
 	padding: 5px 10px;
 	color:#fff
 }
-
 </style>
 </head>
 <body>

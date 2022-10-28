@@ -69,7 +69,45 @@ $(document).ready(function() {
 		 		$("input[name=checkAll]").prop("checked",false);
 		 }
 	});
-	 
+	
+	
+	//게시 기간 유효성 체크
+	$("#rsdate").blur(function() {
+		if ($("#redate").val() != "") {
+			if (reviewdateCheck() == false) {
+				$("#rsdate").val("");
+			}
+		}
+	});
+	
+	
+	$("#redate").blur(function() {
+		if ($("#rsdate").val() != "") {
+			if (reviewdateCheck() == false) {
+				$("#redate").val("");
+			}
+		}
+	});
+	
+	
+	function reviewdateCheck(){
+	 	var startDate = $("#rsdate").val();
+        var startDateArr = startDate.split('-');
+         
+        var endDate = $("#redate").val();
+        var endDateArr = endDate.split('-');
+                 
+        var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
+        var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
+         
+        if(startDateCompare.getTime() > endDateCompare.getTime()) {
+            alert("시작날짜와 종료날짜를 확인해 주세요.");
+            return false;
+        }else{
+        	return true;
+        }
+        
+	}
 	 
     
 });

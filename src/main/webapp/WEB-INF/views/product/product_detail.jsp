@@ -18,9 +18,20 @@
     <script src="http://localhost:9000/myshop/resources/js/rating.js"></script>
     <script src="http://localhost:9000/myshop/resources/js/scrollnav.js"></script>
     
-    <script>
+  <script>
+       $(document).ready(function(){
+          $("#btn_cart").click(function(){
+             $.ajax({
+                url : "cartAddAjax.do?pid="+$("#pid").val()+"&amt="+$("#amt").val(),
+                success : function(result){
+                }
+             });
+          });
+       });
+    
+    
         $(function(){
-        	$.noConflict();
+           $.noConflict();
             $('.carousel_list').slick({
         infinite: true,
         slidesToShow: 5,
@@ -28,6 +39,7 @@
         });
     });
     </script>
+    
 </head>
 <body>
 
@@ -70,7 +82,8 @@
 				<th>구매수량</th>
 				<td>
 					<div class="length">
-						<input type="number" min="1" value="1">
+						<input type="hidden"  id="pid" value="${pid}">
+						<input type="number" min="1" value="1" name="amt" id ="amt">
 						<a href="#a">증가</a>
 						<a href="#a">감소</a>
 					</div>
@@ -109,7 +122,7 @@
 		</table>
 		
 		<div class="btns">
-			<a href="#a" class="btn1">장바구니</a>
+			<a href="http://localhost:9000/myshop/cart.do?id=${sessionScope.svo.id}" class="btn1" id="btn_cart">장바구니</a>
 			<a href="#a" class="btn2">구매하기</a>
 		</div>
 	</div>

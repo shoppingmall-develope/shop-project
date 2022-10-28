@@ -276,6 +276,8 @@
 	border: 1px solid #ccc;
 	outline: none;
 	color: #141414;
+	margin-bottom: 50px;
+	
 }
 
 .searchArea input[type='text'] {
@@ -321,7 +323,7 @@
 	    background-color: white;
 	    z-index: 9999;
 	  	margin-left: 36%;
-	    margin-top: -5%;
+	    margin-top: -8%;
 	    display: none;
 	    position: fixed;
 	    text-align:center;
@@ -351,24 +353,25 @@
 	}
 	/* 상품정보 */
 	.product_info{
-		/* border:1px solid gray; */
+		border:1px solid gray;
 		border-radius:5px;
 		width:100%;
 		display: inline-block;
 	}
 	.pro_flame{
-		margin:20px;
-		border:1px solid gray;
+		/* margin:20px;
+		border:1px solid gray; */
 	}
 	
 	 .pro_img{
-		border:1px solid black;
+		/* border:1px solid black; */
 		width:150px;
 		height:140px;
 		float:left;
 		border-radius:5px;
 		margin:10px;
 	}
+	.proimg{ width:150px; height:140px; vertical-align: middle; margin-right:1rem;}
 	.pro_text{
 		text-align:left;
 	}

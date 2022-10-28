@@ -35,12 +35,14 @@
 		<beans:bean class="com.spring.service.OrderServiceImpl" id="orderService"/>
 		<beans:bean class="com.spring.service.ReviewServiceImpl" id="reviewService"/>
 		<beans:bean class="com.spring.service.FileServiceImpl" id="fileService"/>
+		<beans:bean class="com.spring.service.CartServiceImpl" id="CartService"/>
 		<!-- dao 객체 생성 : -->
 		<beans:bean class="com.myshop.dao.MyshopMemberDAO" id="memberDao"/>
 		<beans:bean class="com.myshop.dao.MyshopNoticeDAO" id="noticeDao"/>
 		<beans:bean class="com.myshop.dao.MyshopProductDAO" id="productDao"/>
 		<beans:bean class="com.myshop.dao.MyshopOrderDAO" id="orderDao"/>
 		<beans:bean class="com.myshop.dao.MyshopReviewDAO" id="reviewDao"/>
+		<beans:bean class="com.myshop.dao.MyshopCartDAO" id="cartDao"/>
 
 		<!-- Interceptor 객체 생성 -->
 		<beans:bean class="com.spring.interceptor.AuthInterceptor" id="authInterceptor"/>

@@ -238,7 +238,7 @@ $(document).ready(function(){
 					<th>성별</th>
 					<td>
 						<input type="radio" id="man" name="gender" value="M"><span>남자</span>
-						<input type="radio" id="woman" name="gender" value="W"><span>여자</span>
+						<input type="radio" id="woman" name="gender" value="F"><span>여자</span>
 						<input type="hidden" class="gender_val" value="${vo.gender}">
 					</td>
 				</tr>

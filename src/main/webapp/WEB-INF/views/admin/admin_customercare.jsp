@@ -99,7 +99,7 @@
 				 			}else{
 					 			output +="<td><input type='checkbox' class='member_check' name='check' value='"+obj.id+"'></td>";
 				 			}
-				 			output +="<td><a href='#' onclick="+popup('http://localhost:9000/myshop/admin_member_content.do?id='+obj.id)+";>"+obj.name+"</td>";
+				 			output +="<td><a href='#' class='subtitle' id='"+obj.id+"'>"+obj.name+"</a></td>";
 				 			output +="<td>"+obj.id+"</td>";
 				 			output +="<td>"+obj.email+"</td>";
 				 			output +="<td>"+obj.grade+"</td>";
@@ -150,6 +150,10 @@
 			 			function popup(url){
 			 				window.open(url,'회원 상세보기', 'width=625, height=850'); return false;
 			 			}
+			 			 
+			 			 $(".subtitle").click(function(){
+			 				popup("http://localhost:9000/myshop/admin_member_content.do?id="+$(this).attr("id"));
+			 			 });
 			 			
 		 			}//if-else
 		 		}//success

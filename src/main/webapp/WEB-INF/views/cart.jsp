@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>장바구니</title>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 body {
   margin: 0;
@@ -112,7 +115,7 @@ td {
   padding: 7px;
 }
 button:hover{
-	cursor: pointer;
+   cursor: pointer;
 }
 
 .cart__list__detail :nth-child(4),
@@ -170,32 +173,51 @@ button:hover{
 }
 
 table.calculation {
-	border: 1px solid #e0e0eb;
-	border-collapse: collapse;
-	background-color:#f5f5f0;
-	width:100%;
-	font-size:10pt;
+   border: 1px solid #e0e0eb;
+   border-collapse: collapse;
+   background-color:#f5f5f0;
+   width:100%;
+   font-size:10pt;
 }
 
 table.calculation th {
-	border: 1px solid #e0e0eb;
+   border: 1px solid #e0e0eb;
 }
 
 table.calculation td {
-	border:1px solid #e0e0eb;
-	text-align: center;
+   border:1px solid #e0e0eb;
+   text-align: center;
 }
 
 .c_price {
-	font-size:20pt;
-	font-weight:bold;
+   font-size:20pt;
+   font-weight:bold;
 }
+
+.checkBox { float:left; width:30px; }
+input { width:16px; height:16px; color:black;}
 </style>
+
+<script>
+   $("#allCheck").click(function(){
+      var chk = $("#allCheck").prop("checked");
+      if(chk) {
+       $(".chBox").prop("checked", true);
+      } else {
+       $(".chBox").prop("checked", false);
+      }
+   });
+   
+   $(".chBox").click(function(){
+    $("#allCheck").prop("checked", false);
+   });
+</script>
+
 </head>
 <body>
-	<!-- header -->
-	<jsp:include page="/header.do"></jsp:include>
-	
+   <!-- header  -->
+   <jsp:include page="/header.do"></jsp:include>
+   
     <section class="cart">
         <div class="cart__information">
             <ul>
@@ -208,7 +230,8 @@ table.calculation td {
             <form>
                 <thead>
                     <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" name="allCheck" id="allCheck"></td>
+   
                         <td colspan="2">상품정보</td>
                         <td>옵션</td>
                         <td>상품금액</td>
@@ -216,33 +239,56 @@ table.calculation td {
                         <td>배송비</td>
                     </tr>
                 </thead>
+                        <script>
+                       $("#allCheck").click(function(){
+                          var chk = $("#allCheck").prop("checked");
+                          if(chk) {
+                           $(".chBox").prop("checked", true);
+                          } else {
+                           $(".chBox").prop("checked", false);
+                          }
+                       });
+                        </script>
                 <tbody>
+                <c:forEach var="vo" items="${list}">
+                
+                
                     <tr class="cart__list__detail">
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" name="chBox" class="chBox" data-cartNum="${vo.bid }"></td>
                         <td>
-                        	<a href="#"><img src="http://localhost:9000/myshop/resources/images/good1.jpg" alt="제품영"></a>
+                           <a href="#"><img src="http://localhost:9000/myshop/resources/upload/${vo.psfile }" alt="이미지"></a>
                         </td>
-                        <td><a href="#">sketch</a>
-                            <p>NYGÅRDSANNA 오가닉 데님 랩스커트</p>
-                            <span class="price">380,000원</span>
-                            <span style="text-decoration: line-through; color: lightgray;">480,000</span>
+                        <td><a href="#">${vo.brand}</a>
+                            <p>${vo.pname}</p>
+                            <span class="price"><fmt:formatNumber value="${vo.price}" type="number"/>원</span>
                         </td>
                         <td class="cart__list__option">
-                            <p>상품 주문 수량: 1개</p>
-                            <button class="cart__list__optionbtn">주문조건 추가/변경</button>
+                            <p>상품 주문 수량: ${vo.amt}개</p>
+                            <button type="button" class="cart__list__optionbtn" data-cartNum="${vo.bid }">삭제</button>
                         </td>
-                        <td><span class="price">380,000원</span><br>
+                        <td><span class="price"><fmt:formatNumber value="${vo.price*vo.amt}" type="number"/>원</span><br>
                             <button class="cart__list__orderbtn">주문하기</button>
                         </td>
                         <td>
-                        	<span>0원</span>
+                           <span>0원</span>
                         </td>
-                        <td>무료</td>
+                        <td><fmt:formatNumber value="${vo.delivery_price}" type="number"/>원</td>
                     </tr>
-                    <tr class="cart__list__detail">
+                        <script>
+                        $(".chBox").click(function(){
+                           $("#allCheck").prop("checked", false);
+                          });
+                        </script>
+                    <c:set var="total"  value="${total+vo.price*vo.amt}"/>
+                    <c:set var="delivery"  value="${delivery+vo.delivery_price}"/>
+                    <%-- <c:set var="discount"  value=""/> --%>
+                    </c:forEach>
+                    <c:set var="payment"  value="${payment+total+delivery}"/>
+                 
+                    <!-- <tr class="cart__list__detail">
                         <td style="width: 2%;"><input type="checkbox"></td>
                         <td style="width: 13%;"> 
-                        	<a href="#"><img src="http://localhost:9000/myshop/resources/images/good2.jpg" alt="제품영"></a>
+                           <a href="#"><img src="http://localhost:9000/myshop/resources/images/good2.jpg" alt="제품영"></a>
                         </td>
                         <td style="width: 27%;"><a href="#">sketch</a>
                             <p>NYGÅRDSANNA 오가닉 데님 와이드 팬츠</p>
@@ -256,16 +302,38 @@ table.calculation td {
                             <button class="cart__list__orderbtn">주문하기</button>
                         </td>
                         <td style="width: 8%;">
-                        	<span>0원</span>
+                           <span>0원</span>
                         </td>
                         <td style="width: 7%;">무료</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3"><input type="checkbox"> 
-                        	<button class="cart__list__optionbtn">선택상품 삭제</button>
+                        <td colspan="3">
+                           <button class="cart__list__optionbtn" type="button" class="selectDelete_btn">선택상품 삭제</button>
                             <button class="cart__list__optionbtn">선택상품 찜</button>
+                        <script>
+                   $(".selectDelete_btn").click(function(){
+                    var confirm_val = confirm("정말 삭제하시겠습니까?");
+                    
+                    if(confirm_val) {
+                     var checkArr = new Array();
+                     
+                     $("input[class='chBox']:checked").each(function(){
+                      checkArr.push($(this).attr("data-cartNum"));
+                     });
+                      
+                     $.ajax({
+                      url : "/shop/deleteCart",
+                      type : "post",
+                      data : { chbox : checkArr },
+                      success : function(){
+                       location.href = "/shop/cartList";
+                      }
+                     });
+                    } 
+                   });
+                  </script>
                         </td>
                         <td></td>
                         <td></td>
@@ -275,29 +343,29 @@ table.calculation td {
             </form>
         </table>
         <table class="calculation">
-        	<tr>
-        		<th>총 상품금액</th>
-        		<th>총 배송비</th>
-        		<th>총 할인금액</th>
-        		<th style="width:600px; padding:22px 0;"><span>결제예정금액</span></th>
-        	</tr>
-        	
-        	<tr style="backgrond-color:#fff;">
-        		<td style="padding:22px 0;"><span class="c_price">0</span>원</td>
-        		<td><span class="c_price">0</span>원</td>
-        		<td><span class="c_price">0</span>원</td>
-        		<td><span class="c_price">0</span>원</td>
-        	</tr>
+           <tr>
+              <th>총 상품금액</th>
+              <th>총 배송비</th>
+              <th>총 할인금액</th>
+              <th style="width:600px; padding:22px 0;"><span>결제예정금액</span></th>
+           </tr>
+           
+           <tr style="backgrond-color:#fff;">
+              <td style="padding:22px 0;"><span class="c_price"><fmt:formatNumber value="${total}" type="number"/></span>원</td>
+              <td><span class="c_price"><fmt:formatNumber value="${delivery}" type="number"/></span>원</td>
+              <td><span class="c_price">0</span>원</td>
+              <td><span class="c_price"><fmt:formatNumber value="${payment}" type="number"/></span>원</td>
+           </tr>
         </table>
         <br>
         <br>
         <div class="cart__mainbtns">
             <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
-            <button class="cart__bigorderbtn right">주문하기</button>
+            <a href="http://localhost:9000/myshop/order_ok.do"><button class="cart__bigorderbtn right">주문하기</button></a>
         </div>
     </section>
     
     <!-- footer -->    
-	<jsp:include page="/footer.do"></jsp:include>
+   <jsp:include page="/footer.do"></jsp:include>
 </body>
 </html>

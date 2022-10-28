@@ -58,7 +58,6 @@ $(document).ready(function(){
 			alert("기간 조건의 시작일을 선택해주세요");
 			return false;
 		}else{
-			alert("데이터 전송");
 			$.ajax({
 				url:"admin_notice_search.do",
 		 		type: "POST",
@@ -189,59 +188,9 @@ $(document).ready(function(){
 		 }//if-else
 	}
 		
-	//게시 기간 유효성 체크
-	$("input[name='startdate']").blur(function() {
-		if ($("input[name='enddate']").val() != "") {
-			if (noticedateCheck() == false) {
-				$("input[name='startdate']").val("");
-			}
-		}
-	});
-
-
-	$("input[name='enddate']").blur(function() {
-		if ($("input[name='startdate']").val() != "") {
-			if (noticedateCheck() == false) {
-				$("input[name='enddate']").val("");
-			}
-		}
-	});
+	
 		
-		function todayCheck(ndate){
-			var nowDate = new Date(+new Date() + 3240 * 10000).toISOString().split("T")[0];
-			var nowDateArr = nowDate.split('-');
-
-			var nDateArr = ndate.split('-');	
-			
-			var nowDateCompare = new Date(nowDateArr[0], parseInt(nowDateArr[1])-1, nowDateArr[2]);
-		    var nDateCompare = new Date(nDateArr[0], parseInt(nDateArr[1])-1, nDateArr[2]);
-			
-		    if(nowDateCompare.getTime() > nDateCompare.getTime()) {
-		        alert("오늘날짜 이전의 날짜는 입력할 수 없습니다.");
-		        return false;
-		    }else{
-		    	return true;
-		    }
-		}
-		
-		function noticedateCheck(){
-		 	var startDate = $("input[name='startdate']").val();
-	        var startDateArr = startDate.split('-');
-	         
-	        var endDate = $("input[name='enddate']").val();
-	        var endDateArr = endDate.split('-');
-	                 
-	        var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
-	        var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
-	         
-	        if(startDateCompare.getTime() > endDateCompare.getTime()) {
-	            alert("시작날짜와 종료날짜를 확인해 주세요.");
-	            return false;
-	        }else{
-	        	return true;
-	        }
-	        
-		}
+	
 	/* 체크박스 전체 선택(공지사항)  */
 	$("input[name=checkAll]").click(function(){
 		if($("input[name=checkAll]").prop("checked")){
@@ -273,10 +222,50 @@ $(document).ready(function(){
 		$("input[name=noticetype]").prop("checked",false);
 		$("input[name=crucial]").prop("checked",false);
 		$("input[name=post_type]").prop("checked",false);
-		alert("리셋");
 	
 	});
 	
+	$(".btn_delete").click(function(){
+		noticeDelete();
+	});//delete function
+	
+	//게시 기간 유효성 체크
+	$("#nsdate").blur(function() {
+		if ($("#nedate").val() != "") {
+			if (noticedateCheck() == false) {
+				$("#nsdate").val("");
+			}
+		}
+	});
+	
+	
+	$("#nedate").blur(function() {
+		if ($("#nsdate").val() != "") {
+			if (noticedateCheck() == false) {
+				$("#nedate").val("");
+			}
+		}
+	});
+	
+	
+	function noticedateCheck(){
+	 	var startDate = $("#nsdate").val();
+        var startDateArr = startDate.split('-');
+         
+        var endDate = $("#nedate").val();
+        var endDateArr = endDate.split('-');
+                 
+        var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
+        var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
+         
+        if(startDateCompare.getTime() > endDateCompare.getTime()) {
+            alert("시작날짜와 종료날짜를 확인해 주세요.");
+            return false;
+        }else{
+        	return true;
+        }
+        
+	}
 	
 	
 });

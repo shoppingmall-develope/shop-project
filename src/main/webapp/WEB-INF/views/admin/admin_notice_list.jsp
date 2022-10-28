@@ -18,6 +18,7 @@
     <title>회원 관리페이지</title>
 
 </head>
+
 <body>
    		<!-- header -->    
 		<jsp:include page="/admin_header.do"></jsp:include>
@@ -50,7 +51,7 @@
 								<label><input type="radio" name="post_type" value="end"><span>게시 종료</span></label>
 								</td>
 								<th>작성 날짜</th>
-								<td><input type="date" name="startdate">~ <input type="date" name="enddate"></td>
+								<td><input type="date" id="nsdate" name="startdate">~ <input type="date" id="nedate" name="enddate"></td>
 							</tr>
 							<tr>
 								<th>검색</th>

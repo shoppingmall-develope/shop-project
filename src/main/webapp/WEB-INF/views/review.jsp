@@ -12,6 +12,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="http://localhost:9000/myshop/resources/js/am-pagination.js"></script>
 <script>
+function mypageOrder(id){
+	if(id == null){
+		alert("로그인이 필요한 컨텐츠 입니다.");
+	}else{
+		/* alert("이동"); */
+		location.href='http://localhost:9000/myshop/mypage_order.do?id='+id;
+	}
+}
 	$(document).ready(function(){
 		
 		//페이징 리스트 출력
@@ -43,7 +51,6 @@
 				alert("엔터");
 			}
 		}); */
-		
  	});
 </script> 
 
@@ -55,6 +62,7 @@
 	
 	<!-- 베스트 리뷰 -->
 	<div class="bg">
+	     <p><img src="http://localhost:9000/myshop/resources/images/review_banner2.png" class="shop_img"></p>
 		<!-- 추천키워드 -->
 		<div class="listArea">
 			<ul class="listTab">
@@ -92,9 +100,9 @@
 						class="word">#가방</span> <span class="word">#지갑</span> <span
 						class="word">#스피드러너</span> <span class="word">#볼캡</span>
 				</div>
-				<div class="search">
+				<div class="search1">
 					<input type="text" class="search_keyword" placeholder="브랜드,카테고리,상품명으로 검색하세요.">
-					<button class="search_btn"><img src="http://localhost:8080/shop/resources/img/icon.png" width="50px"height="50px"
+					<button class="search_btn"><img src="http://localhost:9000/myshop/resources/images/search_icon.png" width="30px"height="30px"
 					padding="5px"></button>
 				</div>
 			</div>
@@ -106,7 +114,7 @@
 				type="radio" name="tab" id="tab1" checked> <label for="tab3">추천
 				많은순</label>
 
-			<button type="button">글쓰기</button>
+			<button type="button" onclick="mypageOrder('${sessionScope.svo.id}')">글쓰기</button>
 			<div class="review" id="cont1">
 				<div class="review_content" id="review_content">
 					<ul>
