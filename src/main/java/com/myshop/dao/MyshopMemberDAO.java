@@ -1,7 +1,9 @@
 package com.myshop.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,6 @@ import com.myshop.vo.SessionVO;
 public class MyshopMemberDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
 	
 	/**
 	 * 아이디 찾기
@@ -29,6 +30,9 @@ public class MyshopMemberDAO {
 		System.out.print("dao == >  findPass()기능처리");
 		return sqlSession.selectOne("mapper.member.findPass", vo);
 	}
+	
+	
+	
 	
 	/**
 	 * insert : 회원가입 
@@ -76,13 +80,35 @@ public class MyshopMemberDAO {
 	}
 	
 	/**
-	 * updateVisit : 방문일 업데이트 
+	 *  selectSearch : 검색 리스트
 	 */
-	public ArrayList<MyshopMemberVO> selectSort(String sorttype) {
-		System.out.println("sortType"+sorttype); 
-		List<MyshopMemberVO> sort_list =sqlSession.selectList("mapper.member.select_sort", sorttype);
-		return (ArrayList<MyshopMemberVO>)sort_list;
+	public ArrayList<MyshopMemberVO> selectSearch(String searchtext, String sorttype){
+		System.out.println("searchtext"+searchtext); 
+		System.out.println("sorttype"+sorttype); 
+		Map<String,String> param = new HashMap<String,String>();
+		param.put("searchtext",searchtext);
+		param.put("sorttype",sorttype);
+		List<MyshopMemberVO> search_list =sqlSession.selectList("mapper.member.select_search", param);
+		return (ArrayList<MyshopMemberVO>)search_list;
+	}
+	
+	/**
+	 *  delete : 회원탈퇴
+	 */
+	public int delete(String id) {
+		System.out.println(id);
+		return sqlSession.delete("mapper.member.delete",id);
 	}
 	
 	
+	/** 
+	 * select : 회원상세보기
+	 */
+	public MyshopMemberVO select(String id) {
+		return sqlSession.selectOne("mapper.member.select",id);
+	}
+	
+	public int update(MyshopMemberVO vo) {
+		return sqlSession.update("mapper.member.admin_update",vo);
+	}
 }

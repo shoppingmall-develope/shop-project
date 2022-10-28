@@ -14,8 +14,8 @@
 	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	
 <style>
-	body {padding-top:278px; margin:0;font-family: "Noto Sans KR";}
-	header {position:fixed;width:100%; height: 230px; padding:0; top:0; transition: top 0.2s ease-in-out; z-index:300; background-color:white; }
+	body {padding-top:280px; margin:0;font-family: "Noto Sans KR";}
+	header {position:fixed;width:100%; height: 230px; padding:0; top:0; transition: top 0.2s ease-in-out; z-index:10; background-color:white; }
 	.header_util { width:100%; line-height:40px; height:40px; margin:auto; background-color:#fafafa; font-size:12px; }
 	
 	.nav-up { top: -280px;}
@@ -115,12 +115,12 @@
 					<!-- 우측 멤버쉽 메뉴 -->
 					<div class="memvership">
 						<ul>
-							
-							<li><a href="http://localhost:9000/myshop/login.do" class="log">LOGOUT</a></li>
+							<c:if test="${sessionScope.svo.id == 'admin' }">
+								<li><a href="http://localhost:9000/myshop/admin.do" target="_blank">Admin</a></li>
+							</c:if>
+							<li><a href="http://localhost:9000/myshop/logout.do" class="log">LOGOUT</a></li>
 					    	<li><a href="http://localhost:9000/myshop/membership_benefit.do">MEMBERSHIP</a></li>
 					    	<!-- <li><a href="#">CART (<span class="Basket-count">0</span>)</a></li> -->
-					    	<li><a href="http://localhost:9000/myshop/join.do">JOIN</a></li>
-							<li><a href="http://localhost:9000/myshop/admin.do" target="_blank">Admin</a></li>
 						</ul>
 					</div>
 				</div>
@@ -138,18 +138,18 @@
 					<div class="search">
 					<form class="search-txt"  action="search.do" method="get">
 						<input type="text" placeholder="검색어 입력" name="keyword">
-						<button class="search-btn">
+						<button class="search-btn" type="submit">
 							<img src="http://localhost:9000/myshop/resources/images/search_icon.png">
 						</button>
-					</form>
+						</form>
 					</div>
 	        		<div class="memver_menu">
 	        		<!-- 마이페이지 장바구니 배송조회 -->
-	        			<dl onclick="window.location.href='http://localhost:9000/myshop/mypage_order.do';">
+	        			<dl onclick="window.location.href='http://localhost:9000/myshop/mypage_order.do?';">
 	        				<dt class="icon"><img src="http://localhost:9000/myshop/resources/images/mypage.png"></dt>
 	        				<dd class="text">마이페이지</dd>
 	        			</dl>
-	        			<dl onclick="window.location.href='http://localhost:9000/myshop/mypage_order.do';" style=margin-top:14px;>
+	        			<dl onclick="window.location.href='http://localhost:9000/myshop/mypage_order.do?id=${sessionScope.svo.id}';" style=margin-top:14px;>
 	        				<dt class="icon"><img src="http://localhost:9000/myshop/resources/images/order.png"></dt>
 	        				<dd class="text">주문/배송조회</dd>
 	        			</dl>

@@ -13,10 +13,6 @@ body {
 	margin: 0
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup,
-	main, menu, nav, section, summary {
-	display: block
-}
 
 audio, canvas, progress, video {
 	display: inline-block;
@@ -28,9 +24,7 @@ audio:not([controls]) {
 	height: 0
 }
 
-[hidden], template {
-	display: none
-}
+
 
 a {
 	background-color: transparent
@@ -1668,10 +1662,6 @@ ol ol, ol ul, ul ol, ul ul {
 	padding-left: 5px
 }
 
-dl {
-	margin-top: 0;
-	margin-bottom: 20px
-}
 
 dd, dt {
 	line-height: 1.42857143
@@ -3686,8 +3676,6 @@ tbody.collapse.in {
 	position: absolute;
 	top: 100%;
 	left: 0;
-	z-index: 1000;
-	display: none;
 	float: left;
 	min-width: 160px;
 	padding: 5px 0;
@@ -3833,7 +3821,8 @@ tbody.collapse.in {
 	.btn-group-vertical>.btn:focus, .btn-group-vertical>.btn:hover,
 	.btn-group>.btn.active, .btn-group>.btn:active, .btn-group>.btn:focus,
 	.btn-group>.btn:hover {
-	z-index: 2
+
+	
 }
 
 .btn-group .btn+.btn, .btn-group .btn+.btn-group, .btn-group .btn-group+.btn,
@@ -4024,7 +4013,6 @@ tbody.collapse.in {
 
 .input-group .form-control {
 	position: relative;
-	z-index: 2;
 	float: left;
 	width: 100%;
 	margin-bottom: 0
@@ -4159,10 +4147,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	margin-left: -1px
 }
 
-.input-group-btn>.btn:active, .input-group-btn>.btn:focus,
-	.input-group-btn>.btn:hover {
-	z-index: 2
-}
+
 
 .input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group
 	{
@@ -4478,10 +4463,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	}
 }
 
-.navbar-static-top {
-	z-index: 1000;
-	border-width: 0 0 1px
-}
+
 
 @media ( min-width :768px) {
 	.navbar-static-top {
@@ -4489,12 +4471,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 	}
 }
 
-.navbar-fixed-bottom, .navbar-fixed-top {
-	position: fixed;
-	right: 0;
-	left: 0;
-	z-index: 1030
-}
+
 
 @media ( min-width :768px) {
 	.navbar-fixed-bottom, .navbar-fixed-top {

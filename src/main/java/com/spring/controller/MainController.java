@@ -25,13 +25,6 @@ public class MainController {
 	public String cart() {
 		return "cart";
 	}
-	
-	//마이페이지 
-	@RequestMapping(value="/mypage_order.do", method=RequestMethod.GET)
-	public String mypage_order() {
-		return "mypage_order";
-	}
-	
 	//회원 - 공통 헤더 
 	@RequestMapping(value="/header.do", method=RequestMethod.GET)
 	public String header(Model model) {
@@ -50,6 +43,11 @@ public class MainController {
 	public String myshop() {	
 		return "myshop";
 	}
+	
+
+	
+	
+	
 	
 	//멤버십 혜택 안내 페이지
 	@RequestMapping(value="/membership_benefit.do", method=RequestMethod.GET)

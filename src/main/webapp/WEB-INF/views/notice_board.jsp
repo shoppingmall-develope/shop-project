@@ -50,8 +50,8 @@
 </script> 
 <style>
 
-body { padding: 50px; display: flex; justify-content: center; align-items: center;}
-form {position: relative;}
+body { padding: 50px; display: flex; justify-content: center; align-items: center; flex-direction: column;}
+form {position: relative; /* width:1080px; */}
 table { border-collapse: collapse; }
 th {border-top:1px solid gray; border-bottom:1px solid gray;padding:10px; padding:10px;}
 td {padding:15px; font-size: .9rem; color: #222; text-align: center; border-bottom:1px solid lightgray;}
@@ -65,15 +65,15 @@ a{text-decoration: none; color:black;}
 input {width : 200px; padding: 10px 8px; border:none; outline: none;}
 
 .searchArea{display:flex; justify-content: center; align-items: center;margin:10px;}
-
+.shop_img{width:1080px;}
 
 </style>
 </head>
 <body>
 <jsp:include page="/header.do"/>
-
+	
     <form name="noticeboardForm" action="notice_search_check.do" method="post">
-    <p><img src="http://localhost:9000/myshop/resources/images/abc.jpg"></p>
+    <p><img src="http://localhost:9000/myshop/resources/images/abc.jpg" class="shop_img"></p>
         <table width="100%">
                 <tr>
                     <th>번호</th>
@@ -84,7 +84,17 @@ input {width : 200px; padding: 10px 8px; border:none; outline: none;}
                 <c:forEach var="vo"  items="${list}">
                 <tr>
                     <td>${vo.rno }</td>
-                    <td class="title"><a href="notic_content.do?nid=${vo.nid}">${vo.ntitle }</a></td>
+                    <c:choose>
+						<c:when test="${vo.ncrucial != 0 }">
+							<td class="title"><a href="notic_content.do?nid=${vo.nid}" style="color:red;font-weight:bold">[중요] ${vo.ntitle }</a></td>
+						</c:when>
+						<c:otherwise>
+							<td class="title"><a href="notic_content.do?nid=${vo.nid}">${vo.ntitle }</a></td>
+						</c:otherwise>
+					</c:choose>	
+         <%--            <c:if test="${vo.ncrucial != 0 }">
+	                    <td class="title"><a href="notic_content.do?nid=${vo.nid}" style="color:red">${vo.ntitle }</a></td>
+                    </c:if> --%>
                     <td>MUSTIT</td>
                     <td>${vo.nsdate}</td>
                 </tr>
@@ -122,5 +132,6 @@ input {width : 200px; padding: 10px 8px; border:none; outline: none;}
             </div>
         </div>   
     </form>
+ <jsp:include page="/footer.do"></jsp:include>
 </body>
 </html>

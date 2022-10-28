@@ -43,7 +43,7 @@ public class JoinController {
 			int result = memberService.getJoinResult(vo);
 			
 			if(result == 1){
-				mv.setViewName("/login");
+				mv.setViewName("redirect:/login.do");
 			}else{
 				mv.setViewName("error_page");
 			}

@@ -253,7 +253,7 @@
 					<input type="submit" value="아이디 찾기" class="btn_mustit">
 				</div>
 			</div>
-						</form>
+			</form>
 		</div>
 		
 	</div>

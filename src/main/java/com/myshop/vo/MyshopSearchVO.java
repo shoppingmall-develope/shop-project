@@ -1,7 +1,34 @@
 package com.myshop.vo;
 
+import java.util.ArrayList;
+
 public class MyshopSearchVO {
-	String searchtype, startdate, enddate, text, ncode, ncrucial, posttype;
+	String searchtype, startdate, enddate, text, ncode, ncrucial, posttype,searchtext,sorttype,id,searchdate;
+	ArrayList searchscore;
+
+	public String getSearchdate() {
+		return searchdate;
+	}
+
+	public void setSearchdate(String searchdate) {
+		this.searchdate = searchdate;
+	}
+
+	public ArrayList getSearchscore() {
+		return searchscore;
+	}
+
+	public void setSearchscore(ArrayList searchscore) {
+		this.searchscore = searchscore;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getNcode() {
 		return ncode;
@@ -13,6 +40,22 @@ public class MyshopSearchVO {
 
 	public String getNcrucial() {
 		return ncrucial;
+	}
+
+	public String getSearchtext() {
+		return searchtext;
+	}
+
+	public void setSearchtext(String searchtext) {
+		this.searchtext = searchtext;
+	}
+
+	public String getSorttype() {
+		return sorttype;
+	}
+
+	public void setSorttype(String sorttype) {
+		this.sorttype = sorttype;
 	}
 
 	public void setNcrucial(String ncrucial) {

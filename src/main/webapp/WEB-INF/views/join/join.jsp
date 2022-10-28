@@ -109,7 +109,14 @@
 				}
 			}
 		});
-		
+	
+		//이메일 정규식 검토	
+		function email_regExp(){
+			/* alert($("#email").val()); */
+			var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			return regExp.test($("#email").val());	
+		}
+			
 			/*********************
 			아이디 중복확인 이벤트 처리 --> AJAX
 		**********************/

@@ -92,8 +92,28 @@ public class MemberServiceImpl implements MemberService{
 	public void updateVisit(String id) {
 		memberDao.updateVisit(id);
 	}
+	/** 
+	 * 검색리스트 도출
+	 */
+	public ArrayList<MyshopMemberVO> getSearchList(String searchtext, String sorttype){
+		return memberDao.selectSearch(searchtext,sorttype);
+	}
 	
-	public ArrayList<MyshopMemberVO> getSortList(String sorttype){
-		return memberDao.selectSort(sorttype);
+	/** 
+	 * 회원 탈퇴
+	 */
+	public int getDelete(String id) {
+		return memberDao.delete(id);
+	}
+	
+	/** 
+	 * 회원 상태보기
+	 */
+	public MyshopMemberVO getContent(String id) {
+		return memberDao.select(id);
+	}
+	
+	public int getUpdate(MyshopMemberVO vo) {
+		return memberDao.update(vo);
 	}
 }

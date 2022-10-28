@@ -70,13 +70,14 @@ public class NoticeController {
 		System.out.println(vo.getRwriter());
 		System.out.println(vo.getScore());
 		System.out.println(vo.getRcontent());
+		System.out.println("---------------------");
 		
 		vo = fileService.fileCheck(vo);
 		int result = reviewService.getWriteResult(vo);
 		
 		if(result == 1){			
 			fileService.fileSave(vo, request);
-			mv.setViewName("redirect:/mypage_order.do");
+			mv.setViewName("redirect:/mypage_order.do?id="+vo.getRwriter());
 		}else{
 
 			mv.setViewName("error_page");
@@ -84,6 +85,50 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+	//리뷰 수정 페이지
+	@ResponseBody
+	@RequestMapping(value="/review_update.do", method=RequestMethod.GET)
+	public MyshopReviewVO review_update(String rid) {
+		MyshopReviewVO vo = reviewService.getReviewContent(rid);
+
+		return vo;
+	}
+	
+	//리뷰 수정 처리
+		@RequestMapping(value="/review_update_check.do", method=RequestMethod.POST)
+		public ModelAndView review_update_check(MyshopReviewVO vo, HttpServletRequest request) 
+													throws Exception{
+			ModelAndView mv = new ModelAndView();
+			
+			System.out.println(vo.getPid());
+			System.out.println(vo.getRid());
+			System.out.println(vo.getScore());
+			System.out.println(vo.getRcontent());
+			System.out.println("---------------------");
+			
+			vo = fileService.fileCheck(vo);
+			int result = reviewService.getUpdateReview(vo);
+			
+			if(result == 1){			
+				fileService.fileSave(vo, request);
+				mv.setViewName("redirect:/mypage_order.do?id="+vo.getRwriter());
+			}else{
+
+				mv.setViewName("error_page");
+			}		
+			
+			return mv;
+		}
+		
+	//리뷰 삭제처리
+	@ResponseBody
+	@RequestMapping(value="/review_delete_check.do", method=RequestMethod.GET)
+	public int review_delete_check(String rid) {	
+		int result = reviewService.delete(rid);
+		return result;
+	}
+		
 	
 	//공지사항 페이지
 		@RequestMapping(value="/notice_board.do", method=RequestMethod.GET)

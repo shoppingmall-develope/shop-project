@@ -41,7 +41,8 @@ public class LoginController {
 				//최근 방문일 카운트
 				memberService.updateVisit(vo.getId());
 				//mv.addObject("login_result","ok");
-				mv.setViewName("myshop");
+				
+				mv.setViewName("redirect:/myshop.do");
 			}
 		}else{
 			mv.addObject("login_result","fail");
@@ -51,6 +52,26 @@ public class LoginController {
 		return mv;
 	}
 	
+	
+	//로그아웃 처리
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		//세션정보를 가져와서 sid 값이 null이 아니면 session.invalidate 메소드 호출
+		//String sid = (String)session.getAttribute("sid");
+		SessionVO svo = (SessionVO)session.getAttribute("svo");
+		
+		if(svo != null) {
+			session.invalidate();	//세션 정보 삭제
+			mv.addObject("logout_result","ok"); //index 페이지에서 logout_result 값을 받아서 ok인 경우 alert 창을 띄움
+		}
+		
+		mv.setViewName("login");
+		
+		return mv;
+		
+	}
 	
 	//본인인증
 	@ResponseBody

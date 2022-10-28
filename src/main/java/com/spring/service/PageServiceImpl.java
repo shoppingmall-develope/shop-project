@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-@Service
+
 public class PageServiceImpl {
 	
 	@Autowired
@@ -23,7 +22,7 @@ public class PageServiceImpl {
 		
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 10;	
+		int pageSize = 12;	
 		int reqPage = 1;	
 		int pageCount = 1;	
 		int dbCount = 0;

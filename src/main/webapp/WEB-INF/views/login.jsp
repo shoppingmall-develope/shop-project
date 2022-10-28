@@ -106,6 +106,17 @@
 			}
 		});
 		
+		//로그인 엔터 처리
+		$(".LoginPW").keyup(function(key){
+			if(key.keyCode==13){
+				if($("#id").val() == ""){
+					alert("아이디를 입력해주세요.")
+				}else{
+					loginForm.submit();
+				}
+			}
+		});
+		
 	});
 </script>
 <style>

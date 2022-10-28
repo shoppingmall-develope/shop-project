@@ -45,7 +45,7 @@ public class Naver_Sens_V2 {
 	    bodyJson.put("countryCode","82");
 	    bodyJson.put("from","01050151256");	// 발신번호 * 사전에 인증/등록된 번호만 사용할 수 있습니다.		
 	    bodyJson.put("content","Going 본인인증 ["+rand+"]");		// 난수와 함께 전송
-	    bodyJson.put("messages", toArr);		
+	    bodyJson.put("messages", toArr);			
 	    
 
 	    String body = bodyJson.toJSONString();

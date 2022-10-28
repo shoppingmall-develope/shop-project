@@ -12,8 +12,10 @@ public interface MemberService {
 	ArrayList<MyshopMemberVO> getList();
 	int getTotalCount();
 	void updateVisit(String id);
-	ArrayList<MyshopMemberVO> getSortList(String sorttype);
+	ArrayList<MyshopMemberVO> getSearchList(String searchtext, String sorttype);
+	int getDelete(String id);
+	MyshopMemberVO getContent(String id);
+	int getUpdate(MyshopMemberVO vo);
 	MyshopMemberVO findId(MyshopMemberVO vo);
 	MyshopMemberVO findPass(MyshopMemberVO vo);
-	
 }

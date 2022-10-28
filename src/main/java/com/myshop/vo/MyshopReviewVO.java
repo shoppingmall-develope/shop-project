@@ -3,9 +3,21 @@ package com.myshop.vo;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class MyshopReviewVO {
-	int pid, oid, score, recom;
-	String rid, pname, category_id, rwriter, rcontent, rfile, rsfile, rdate, brand;
+	int pid, oid, score, recom, price;
+	String rid, pname, category_id, rwriter, rcontent, rfile, rsfile, rdate, brand, psfile;
 	CommonsMultipartFile file1;
+	public String getPsfile() {
+		return psfile;
+	}
+	public void setPsfile(String psfile) {
+		this.psfile = psfile;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getOid() {
 		return oid;
 	}

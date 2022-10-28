@@ -8,14 +8,13 @@ l<%@ page language="java" contentType="text/html; charset=UTF-8"
 <title>Insert title here</title>
 <link rel="stylesheet"  href="http://localhost:9000/myshop/resources/css/am-pagination.css">
 <link rel="stylesheet"  href="http://localhost:9000/myshop/resources/css/product_list.css">
-<script src="http://localhost:9000/myshop/resources/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/myshop/resources/js/am-pagination.js"></script>
 <Style>
 
 	/*폰트&기본세팅*/
 	html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 	h1, h2, h3, h4, h5, h6 {font-size:1em;font-family:'Noto Sans KR', sans-serif;}
-	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+	article, aside, details, figcaption, figure, footer, hgroup, menu,  section {display:block}
 	
 	ul, ul li {margin:0;padding:0;list-style:none}
 	legend {position:absolute !important;margin:0 !important;padding:0 !important;font-size:0 !important;line-height:0 !important;text-indent:-9999em !important;overflow:hidden !important}
@@ -133,11 +132,10 @@ l<%@ page language="java" contentType="text/html; charset=UTF-8"
 	/* 평점 찜 */
 	.product_zzim__num{padding-right:5px;}
 	
-	#top_btn, #top_btn2{position:fixed;top:70%;right:20px;background:#fff;width:42px;height:40px;background:url("http://localhost:9000//resources/myshop/top_btn.png") no-repeat;text-indent:-9999px;overflow:hidden;opacity:0.8;z-index: 6;}
 
 </Style>
 <script>
-/* $(document).ready(function(){
+ $(document).ready(function(){
 	
 	//페이징 리스트 출력
 	var pager = jQuery('#ampaginationsm').pagination({
@@ -162,7 +160,7 @@ l<%@ page language="java" contentType="text/html; charset=UTF-8"
            $(location).attr('href', "http://localhost:9000/myshop/product_list.do?rpage="+e.page);         
     });
 	
-	}); */
+	}); 
 </script>
 </head>
 <body>
@@ -309,14 +307,7 @@ l<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<input type="hidden" name=category_id value="<c:out value="${category_id}"/>">
 				<input type="hidden" name=category_nm value="<c:out value="${category_nm}"/>">
 			</from>
-		<script>
-        $(function() {
-            $("#container #top_btn2").on("click", function() {
-                $("html, body").animate({scrollTop:0}, '500');
-                return false;
-            });
-        });
-        </script>
+		
 		</div>
 		<!-- } container 끝 -->
 	</div>

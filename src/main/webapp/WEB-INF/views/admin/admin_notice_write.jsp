@@ -149,6 +149,7 @@
 						<form name="noticewriteForm" action="admin_notice_write_check.do" method="post" enctype="multipart/form-data">
 							<div class="flame">
 								<table class="write_table">
+								
 									<tr>
 										<th>분류</th>
 										<td>
