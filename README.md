@@ -37,7 +37,8 @@
   
 * **Header**
 ![SEARCH](https://user-images.githubusercontent.com/106207558/202955461-98cfadc2-20b2-40a8-8e78-0df193b72ba8.png)  
-![SEARCHRESULT](https://user-images.githubusercontent.com/106207558/202955898-42f642f0-1a09-4cdc-a761-11e6bd6263dc.png)  
+![dd](https://user-images.githubusercontent.com/106207558/234510065-92c6a004-3ae5-4291-832e-ea4d2269fabe.png)  
+
   + **메뉴설정, 상품검색 기능** 
      1. Mybatis를 이용하여 DB에 등록된 카테고리 정보를 JSTL을 활용해 동적으로 출력 
      2. 검색 시 상품의 제목을 비교하여 데이터를 가져오고 JsonView를 설정해  
